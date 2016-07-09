@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nomad Buoy @ CSR</title>
+
+	<!-- Main style sheet -->
+	<link href="style.css" rel="stylesheet" type="text/css">  
+
+	<!-- EXTERNAL LIBS-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://www.google.com/jsapi"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand navbar-left" href="#">
+					<span><img src="assets/images/csr-logo.jpg" class="navbar-logo" /><span>
+				</a>
+				<a class="navbar-brand" href="#">
+					<span class="navbar-title">Nomad Buoy at Catalina Sea Ranch</span>
+				</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<!--<li class="active"><a href="#">Test</a></li>-->
+					<!--<li><a href="http://www.bluerobotics.com">BlueRobotics</a></li>-->
+				</ul>
+			</div><!--/.nav-collapse -->
+			<div class="pull-right" style="margin-top:-40px">
+				<span id="timeSinceUpdate"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="padding-top:100px">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Status</div>
+					<div class="panel-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Field</th>
+									<th>Value</th>
+									<th>Units</th>
+								</tr>
+							</thead>
+							<tr>
+								<td>
+									Battery Voltage
+								</td>
+								<td>
+									<span id="voltageLabel"></span>
+								</td>
+								<td>
+									V
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Current Draw
+								</td>
+								<td>
+									<span id="currentLabel"></span>
+								</td>
+								<td>
+									A
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Internal Temperature
+								</td>
+								<td>
+									<span id="intTempLabel"></span>
+								</td>
+								<td>
+									&deg;C
+								</td>
+							</tr>
+							<tr>
+								<td>
+									IP Address
+								</td>
+								<td>
+									<span id="ipAddressLabel"></span>
+								</td>
+								<td>
+									
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Measurements</div>
+					<div class="panel-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Field</th>
+									<th>Value</th>
+									<th>Units</th>
+								</tr>
+							</thead>
+							<tr>
+								<td>
+									Water Temperature
+								</td>
+								<td>
+									<span id="waterTempLabel"></span>
+								</td>
+								<td>
+									&deg;C
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Salinity
+								</td>
+								<td>
+									<span id="salinityLabel"></span>
+								</td>
+								<td>
+									g/kg
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Dissolved Oxygen
+								</td>
+								<td>
+									<span id="oxygenLabel"></span>
+								</td>
+								<td>
+									mg/L
+								</td>
+							</tr>
+							<tr>
+								<td>
+									pH
+								</td>
+								<td>
+									<span id="pHLabel"></span>
+								</td>
+								<td>
+									
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Current
+								</td>
+								<td>
+									<span id="currentLabel"></span>
+								</td>
+								<td>
+									amps
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Signal
+								</td>
+								<td>
+									<span id="signalLabel"></span>
+								</td>
+								<td>
+									&mu;s
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="btn-group btn-group-xs pull-right" data-toggle="buttons">
+			<label class="btn btn-primary">
+				<input type="radio" name="pageSelector" id="fiveMin">5 Min
+			</label>
+			<label class="btn btn-primary">
+				<input type="radio" name="pageSelector" id="fifteenMin">15 Min
+			</label>				
+			<label class="btn btn-primary active">
+				<input type="radio" name="pageSelector" id="oneHr" checked>1 Hr
+			</label>
+			<label class="btn btn-primary">
+				<input type="radio" name="pageSelector" id="oneDay">1 Day
+			</label>				
+			<label class="btn btn-primary">
+				<input type="radio" name="pageSelector" id="oneWeek">1 Week
+			</label>				
+			<label class="btn btn-primary">
+				<input type="radio" name="pageSelector" id="oneMonth">1 Month
+			</label>												
+			<label class="btn btn-primary">
+				<input type="radio" name="pageSelector" id="allPages">All Data
+			</label>
+		</div>
+
+		<br /><br />			
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">Water Temperature</div>
+			<div class="panel-body">
+				<div id="chartTemp" style="width: 100%;"></div>				
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Salinity</div>
+			<div class="panel-body">
+				<div id="chartSalinity" style="width: 100%;"></div>				
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Dissolved Oxygen</div>
+			<div class="panel-body">
+				<div id="chartOxygen" style="width: 100%;"></div>				
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">pH</div>
+			<div class="panel-body">
+				<div id="chartPH" style="width: 100%;"></div>				
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Current</div>
+			<div class="panel-body">
+				<div id="chartCurrent" style="width: 100%;"></div>				
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Signal</div>
+			<div class="panel-body">
+				<div id="chartSignal" style="width: 100%;"></div>				
+			</div>
+		</div>			
+	</div>
+
+
+	<div class="footer">
+		<div class="container">
+			<p class="text-muted">&copy; Catalina Sea Ranch / Blue Robotics Inc.</p>
+		</div>
+	</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script
+			  src="https://code.jquery.com/jquery-2.2.4.min.js"
+			  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+			  crossorigin="anonymous"></script>
+	  <!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+		<script src="https://use.fontawesome.com/e1b240a768.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>    
+
+    <script src="nomad.js"></script>
+  </body>
+  </html>
