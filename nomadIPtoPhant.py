@@ -27,3 +27,6 @@ while True:
 				print "Unexpected error:", sys.exc_info()[0]
 
 		time.sleep(60)
+
+# To run this on boot, add the following line to /etc/rc.local
+# screen -dm -S phantIP python /home/[username]/nomad/nomadIPtoPhant.py
