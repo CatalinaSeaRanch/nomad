@@ -25,8 +25,10 @@ while True:
 				print r.text
 		except ValueError:
 				print "Unexpected error:", sys.exc_info()[0]
+		except:
+				print "Unknown error"
 
 		time.sleep(60)
 
 # To run this on boot, add the following line to /etc/rc.local
-# screen -dm -S phantIP python /home/[username]/nomad/nomadIPtoPhant.py
+# screen -dm -S phantIP python /home/[username]/nomad/nomadIPtoPhant.py --key [private_key]
