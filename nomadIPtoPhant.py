@@ -30,5 +30,6 @@ while True:
 
 		time.sleep(60)
 
-# To run this on boot, add the following line to /etc/rc.local
+# To run this on boot, add the following lines to /etc/rc.local
+# sleep 10
 # screen -dm -S phantIP python /home/[username]/nomad/nomadIPtoPhant.py --key [private_key]
