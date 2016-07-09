@@ -3,6 +3,36 @@
 // Global Variables
 var lastUpdateDate = new Date();
 
+// Update IP address separately from everything else
+function updateAddress() {
+	var public_key = 'QGq9E8Yy1wc312pmoL0Z';
+
+	var ipAddress;
+	var date;
+
+	// JSONP request
+	var jsonData = $.ajax({
+		url: 'https://data.sparkfun.com/output/' + public_key + '.json',
+		data: {
+			page: 1
+		},
+		dataType: 'jsonp',
+	}).done(function (results) {
+		console.log(results);
+
+		$.each(results, function (i, row) {
+			if ( i == 0 ) {
+				date = new Date(row.timestamp);
+			}
+			if ( i == 0 ) {
+				document.getElementById("lastUpdatedLabel").innerHTML = "Data last received ";
+				document.getElementById("ipAddressLabel").innerHTML = row.ip_address;
+				document.getElementById("ipAddressDateLabel").innerHTML = new Date(row.timestamp);
+			}
+  	});
+  });
+}
+
 // onload callback
 function drawChart() {
 
@@ -231,6 +261,9 @@ function drawLoop() {
 google.load('visualization', '1', {
   packages: ['corechart']
 });
+
+// grab IP on start
+updateAddress();
 
 // call drawChart once google charts is loaded
 google.setOnLoadCallback(drawLoop);
