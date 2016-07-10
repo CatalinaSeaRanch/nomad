@@ -29,12 +29,12 @@
 				</button>
 				<a class="navbar-brand navbar-left" href="#">
 					<span><img src="assets/images/csr-logo.jpg" class="navbar-logo" /><span>
-				</a>
-				<a class="navbar-brand" href="#">
-					<span class="navbar-title">NOMAD Buoy at Catalina Sea Ranch</span>
-				</a>
-			</div>
-			<div class="collapse navbar-collapse">
+					</a>
+					<a class="navbar-brand" href="#">
+						<span class="navbar-title">NOMAD Buoy at Catalina Sea Ranch</span>
+					</a>
+				</div>
+				<div class="collapse navbar-collapse">
 				<!--<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Nomad</a></li>
 					<li><a href="http://www.catalinasearanch.com">CSR</a></li>
@@ -53,232 +53,256 @@
 				<p>This website shows live oceanographic data gathered by the Catalina Sea Ranch <em>NOMAD Buoy</em>, anchored six miles south of San Pedro, CA on the Catalina Sea Ranch aquaculture location. The data is gathered by variety of sensors and uploaded to a cloud server every few seconds.</p>
 				<p>See the image to the right for a detailed description of the NOMAD buoy. This site was built by Tony White and Rustom Jehangir and is sponsored by <a href="http://bluerobotics.com">Blue Robotics.</a></p>
 				<p>For more information, please visit <a href="http://catalinasearanch.com">catalinasearanch.com</a>.
-				<a href="http://catalinasearanch.com"><img src="assets/images/csr-logo-1.jpg" class="img-responsive"/></a>
-				<p>Sponsored by:</p>
-				<a href="http://bluerobotics.com"><img src="assets/images/br-logo.png" class="img-responsive" style="max-width:200px" /></a>
-			</div>
-			<div class="col-md-6">
-				<a href="https://catalinasearanch.com/Catalinasearanch.com/Monitoring_files/ONLINE.nomad.9.13.14.jpg"><img src="https://catalinasearanch.com/Catalinasearanch.com/Monitoring_files/ONLINE.nomad.9.13.14.jpg" class="img-responsive" /></a>
-			</div>
-		</div>
-		<br /><br />
-		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Buoy Status</div>
-					<div class="panel-body">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Field</th>
-									<th>Value</th>
-									<th>Units</th>
-								</tr>
-							</thead>
-							<tr>
-								<td>
-									Battery Voltage
-								</td>
-								<td>
-									<span id="voltageLabel"></span>
-								</td>
-								<td>
-									V
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Current Draw
-								</td>
-								<td>
-									<span id="currentLabel"></span>
-								</td>
-								<td>
-									A
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Internal Temperature
-								</td>
-								<td>
-									<span id="intTempLabel"></span>
-								</td>
-								<td>
-									&deg;C
-								</td>
-							</tr>
-						</table>
-					</div>
+					<a href="http://catalinasearanch.com"><img src="assets/images/csr-logo-1.jpg" class="img-responsive"/></a>
+					<p>Sponsored by:</p>
+					<a href="http://bluerobotics.com"><img src="assets/images/br-logo.png" class="img-responsive" style="max-width:200px" /></a>
+				</div>
+				<div class="col-md-6">
+					<a href="https://catalinasearanch.com/Catalinasearanch.com/Monitoring_files/ONLINE.nomad.9.13.14.jpg"><img src="https://catalinasearanch.com/Catalinasearanch.com/Monitoring_files/ONLINE.nomad.9.13.14.jpg" class="img-responsive" /></a>
 				</div>
 			</div>
-
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Measurements</div>
-					<div class="panel-body">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Field</th>
-									<th>Value</th>
-									<th>Units</th>
-								</tr>
-							</thead>
-							<tr>
-								<td>
-									Water Temperature
-								</td>
-								<td>
-									<span id="waterTempLabel"></span>
-								</td>
-								<td>
-									&deg;C
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Salinity
-								</td>
-								<td>
-									<span id="salinityLabel"></span>
-								</td>
-								<td>
-									g/kg
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Dissolved Oxygen
-								</td>
-								<td>
-									<span id="oxygenLabel"></span>
-								</td>
-								<td>
-									mg/L
-								</td>
-							</tr>
-							<tr>
-								<td>
-									pH
-								</td>
-								<td>
-									<span id="pHLabel"></span>
-								</td>
-								<td>
-									-
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Current
-								</td>
-								<td>
-									<span id="currentLabel"></span>
-								</td>
-								<td>
-									amps
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Signal
-								</td>
-								<td>
-									<span id="signalLabel"></span>
-								</td>
-								<td>
-									&mu;s
-								</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="btn-group btn-group-xs pull-right" data-toggle="buttons">
-
-			<label class="btn btn-primary">
-				<input type="radio" name="pageSelector" id="fiveMin">5 Min
-			</label>
-			<label class="btn btn-primary">
-				<input type="radio" name="pageSelector" id="fifteenMin">15 Min
-			</label>				
-			<label class="btn btn-primary">
-				<input type="radio" name="pageSelector" id="oneHr">1 Hr
-			</label>
-			<label class="btn btn-primary active">
-				<input type="radio" name="pageSelector" id="oneDay" checked>1 Day
-			</label>				
-			<label class="btn btn-primary">
-				<input type="radio" name="pageSelector" id="oneWeek">1 Week
-			</label>				
-			<label class="btn btn-primary">
-				<input type="radio" name="pageSelector" id="oneMonth">1 Month
-			</label>												
-			<label class="btn btn-primary">
-				<input type="radio" name="pageSelector" id="allPages">All Data
-			</label>
-		</div>
-
-		<br /><br />			
-		
-		<div class="panel panel-default">
-			<div class="panel-heading">Water Temperature</div>
-			<div class="panel-body">
-				<div id="chartTemp" style="width: 100%;"></div>				
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">Salinity</div>
-			<div class="panel-body">
-				<div id="chartSalinity" style="width: 100%;"></div>				
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">Dissolved Oxygen</div>
-			<div class="panel-body">
-				<div id="chartOxygen" style="width: 100%;"></div>				
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">pH</div>
-			<div class="panel-body">
-				<div id="chartPH" style="width: 100%;"></div>				
-			</div>
-		</div>
-	</div>
-
-
-	<div class="footer">
-		<div class="container">
+			<br /><br />
 			<div class="row">
 				<div class="col-md-6">
-					<p class="text-muted">&copy; Catalina Sea Ranch<br />
-					Developed by <a href="http://bluerobotics.com">Blue Robotics Inc.</a></p>
+					<div class="panel panel-default">
+						<div class="panel-heading">Buoy Status</div>
+						<div class="panel-body">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Field</th>
+										<th>Value</th>
+										<th>Units</th>
+									</tr>
+								</thead>
+								<tr>
+									<td>
+										Battery Voltage
+									</td>
+									<td>
+										<span id="voltageLabel"></span>
+									</td>
+									<td>
+										V
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Current Draw
+									</td>
+									<td>
+										<span id="currentLabel"></span>
+									</td>
+									<td>
+										A
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Internal Temperature
+									</td>
+									<td>
+										<span id="intTempLabel"></span>
+									</td>
+									<td>
+										&deg;C
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
 				</div>
+
 				<div class="col-md-6">
-					<p class="text-right text-muted">
-					<span id="lastUpdatedLabel">Data has not been received </span>
-					<span id="ipAddressDateLabel"></span> / <span id="ipAddressLabel"></span>
-					<span id="alive"><i class="fa fa-circle" aria-hidden="true"></i></span>
+					<div class="panel panel-default">
+						<div class="panel-heading">Measurements</div>
+						<div class="panel-body">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Field</th>
+										<th>Value</th>
+										<th>Units</th>
+									</tr>
+								</thead>
+								<tr>
+									<td>
+										Water Temperature
+									</td>
+									<td>
+										<span id="waterTempLabel"></span>
+									</td>
+									<td>
+										&deg;C
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Salinity
+									</td>
+									<td>
+										<span id="salinityLabel"></span>
+									</td>
+									<td>
+										g/kg
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Dissolved Oxygen
+									</td>
+									<td>
+										<span id="oxygenLabel"></span>
+									</td>
+									<td>
+										mg/L
+									</td>
+								</tr>
+								<tr>
+									<td>
+										pH
+									</td>
+									<td>
+										<span id="pHLabel"></span>
+									</td>
+									<td>
+										-
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Current
+									</td>
+									<td>
+										<span id="currentLabel"></span>
+									</td>
+									<td>
+										amps
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Signal
+									</td>
+									<td>
+										<span id="signalLabel"></span>
+									</td>
+									<td>
+										&mu;s
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="btn-group btn-group-xs pull-right" data-toggle="buttons">
+
+				<label class="btn btn-primary">
+					<input type="radio" name="pageSelector" id="fiveMin">5 Min
+				</label>
+				<label class="btn btn-primary">
+					<input type="radio" name="pageSelector" id="fifteenMin">15 Min
+				</label>				
+				<label class="btn btn-primary">
+					<input type="radio" name="pageSelector" id="oneHr">1 Hr
+				</label>
+				<label class="btn btn-primary active">
+					<input type="radio" name="pageSelector" id="oneDay" checked>1 Day
+				</label>				
+				<label class="btn btn-primary">
+					<input type="radio" name="pageSelector" id="oneWeek">1 Week
+				</label>				
+				<label class="btn btn-primary">
+					<input type="radio" name="pageSelector" id="oneMonth">1 Month
+				</label>												
+				<label class="btn btn-primary">
+					<input type="radio" name="pageSelector" id="allPages">All Data
+				</label>
+			</div>
+
+			<br /><br />			
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Water Temperature</div>
+				<div class="panel-body">
+					<div id="chartTemp" style="width: 100%;"></div>				
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">Salinity</div>
+				<div class="panel-body">
+					<div id="chartSalinity" style="width: 100%;"></div>				
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">Dissolved Oxygen</div>
+				<div class="panel-body">
+					<div id="chartOxygen" style="width: 100%;"></div>				
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">pH</div>
+				<div class="panel-body">
+					<div id="chartPH" style="width: 100%;"></div>				
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Animal Tracker Tag Signals</div>
+				<div class="panel-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Tag ID</th>
+								<th>Last Reported Time</th>
+							</tr>
+						</thead>
+						<tbody id="trackerTableBody">
+							<tr>
+								<td>
+									Tag ID
+								</td>
+								<td>
+									Date and Time
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
-	</div>
+
+
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<p class="text-muted">&copy; Catalina Sea Ranch<br />
+							Developed by <a href="http://bluerobotics.com">Blue Robotics Inc.</a></p>
+						</div>
+						<div class="col-md-6">
+							<p class="text-right text-muted">
+								<span id="lastUpdatedLabel">Data has not been received </span>
+								<span id="ipAddressDateLabel"></span> / <span id="ipAddressLabel"></span>
+								<span id="alive"><i class="fa fa-circle" aria-hidden="true"></i></span>
+							</div>
+						</div>
+					</div>
+				</div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script
-			  src="https://code.jquery.com/jquery-2.2.4.min.js"
-			  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-			  crossorigin="anonymous"></script>
-	  <!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-		<script src="https://use.fontawesome.com/e1b240a768.js"></script>
+    <script src="https://use.fontawesome.com/e1b240a768.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>    
 
