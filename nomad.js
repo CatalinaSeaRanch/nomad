@@ -3,6 +3,8 @@
 // Global Variables
 var lastUpdateDate = new Date();
 
+var maxAliveTimeoutMS = 300000;
+
 // Update IP address separately from everything else
 function updateAddress() {
 	var public_key = 'QGq9E8Yy1wc312pmoL0Z';
@@ -28,9 +30,17 @@ function updateAddress() {
 				document.getElementById("lastUpdatedLabel").innerHTML = "Data last received ";
 				document.getElementById("ipAddressLabel").innerHTML = row.ip_address;
 				document.getElementById("ipAddressDateLabel").innerHTML = new Date(row.timestamp);
+				if ( new Date() - new Date(row.timestamp) < maxAliveTimeoutMS ) {
+					document.getElementById("alive").style.color = 'YellowGreen';
+				} else {
+					document.getElementById("alive").style.color = 'red';
+				}
 			}
   	});
   });
+
+	// recursive call to repeat this function
+  setTimeout(updateAddress,30000);
 }
 
 // onload callback

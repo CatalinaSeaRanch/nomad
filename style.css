@@ -16,6 +16,20 @@
   line-height: 50px;
 }
 
+.navbar {
+  border-bottom: 2px #003f7f solid;
+  background: white;
+}
+
+.panel-default .panel-heading {
+  background: rgba(0,63,127,0.2); 
+}
+
 .csr-color {
   color:#003f7f;
+}
+
+h1 {
+  font-size: 2em;
+  color: #003f7f;
 }
