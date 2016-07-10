@@ -23,6 +23,9 @@
 
 .panel-default .panel-heading {
   background: rgba(0,63,127,0.2); 
+  color:#003f7f;
+  font-weight: 600;
+  font-size: 1.2em;
 }
 
 .csr-color {
