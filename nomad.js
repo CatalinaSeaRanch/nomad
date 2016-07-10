@@ -81,25 +81,19 @@ function drawChart() {
 		dataType: 'jsonp',
 	}).done(function (results) {
 
-		var dataVoltage = new google.visualization.DataTable();
-		var dataCurrent = new google.visualization.DataTable();
-		var dataPower   = new google.visualization.DataTable();
-		var dataRPM     = new google.visualization.DataTable();
-		var dataThrust  = new google.visualization.DataTable();
-		var dataSignal  = new google.visualization.DataTable();
+		var dataTemp     = new google.visualization.DataTable();
+		var dataSalinity = new google.visualization.DataTable();
+		var dataOxygen   = new google.visualization.DataTable();
+		var dataPH       = new google.visualization.DataTable();
 
-		dataVoltage.addColumn('datetime', 'Time');
-		dataVoltage.addColumn('number', 'Voltage');
-		dataCurrent.addColumn('datetime', 'Time');
-		dataCurrent.addColumn('number', 'Current');
-		dataPower.addColumn('datetime', 'Time');
-		dataPower.addColumn('number', 'Power');
-		dataRPM.addColumn('datetime', 'Time');
-		dataRPM.addColumn('number', 'RPM');
-		dataThrust.addColumn('datetime', 'Time');
-		dataThrust.addColumn('number', 'Thrust');
-		dataSignal.addColumn('datetime', 'Time');
-		dataSignal.addColumn('number', 'Signal');
+		dataTemp.addColumn('datetime', 'Time');
+		dataTemp.addColumn('number', 'Water Temperature');
+		dataSalinity.addColumn('datetime', 'Time');
+		dataSalinity.addColumn('number', 'Salinity');
+		dataOxygen.addColumn('datetime', 'Time');
+		dataOxygen.addColumn('number', 'Dissolved Oxygen');
+		dataPH.addColumn('datetime', 'Time');
+		dataPH.addColumn('number', 'pH');
 
 		var mostRecent;
 
@@ -108,96 +102,68 @@ function drawChart() {
 				mostRecent = new Date(row.timestamp);
 			}
 			if ( Math.abs(mostRecent - new Date(row.timestamp)) < maxAge ) {
-				dataVoltage.addRow([
+				dataTemp.addRow([
 					(new Date(row.timestamp)),
-					parseFloat(row.voltage)
+					parseFloat(row.temperature)
 					]);
-				dataCurrent.addRow([
+				dataSalinity.addRow([
 					(new Date(row.timestamp)),
-					parseFloat(row.current)
+					parseFloat(row.salinity)
 					]);
-				dataPower.addRow([
+				dataOxygen.addRow([
 					(new Date(row.timestamp)),
-					parseFloat(row.power)
+					parseFloat(row.oxygen)
 					]);
-				dataRPM.addRow([
+				dataPH.addRow([
 					(new Date(row.timestamp)),
-					parseFloat(row.rpm)
-					]);
-				dataThrust.addRow([
-					(new Date(row.timestamp)),
-					parseFloat(row.thrust)
-					]);
-				dataSignal.addRow([
-					(new Date(row.timestamp)),
-					parseFloat(row.signal)
+					parseFloat(row.pH)
 					]);
 			}
 			if ( i == 0 ) {
-				document.getElementById("voltageLabel").innerHTML = row.voltage;
-				document.getElementById("currentLabel").innerHTML = row.current;
-				document.getElementById("powerLabel").innerHTML = row.power;
-				document.getElementById("rpmLabel").innerHTML = row.rpm;
-				document.getElementById("thrustLabel").innerHTML = row.thrust;
-				document.getElementById("signalLabel").innerHTML = row.signal;
+				document.getElementById("waterTempLabel").innerHTML = row.temperature;
+				document.getElementById("salinityLabel").innerHTML = row.salinity;
+				document.getElementById("oxygenLabel").innerHTML = row.oxygen;
+				document.getElementById("pHLabel").innerHTML = row.pH;
 				lastUpdateDate = new Date(row.timestamp);             
 			}
   	});
 
-	var chartVoltage = new google.visualization.LineChart($('#chartVoltage').get(0));
-	var chartCurrent = new google.visualization.LineChart($('#chartCurrent').get(0));
-	var chartPower   = new google.visualization.LineChart($('#chartPower').get(0));
-	var chartRPM     = new google.visualization.LineChart($('#chartRPM').get(0));
-	var chartThrust  = new google.visualization.LineChart($('#chartThrust').get(0));
-	var chartSignal  = new google.visualization.LineChart($('#chartSignal').get(0));
+	var chartTemp     = new google.visualization.LineChart($('#chartTemp').get(0));
+	var chartSalinity = new google.visualization.LineChart($('#chartSalinity').get(0));
+	var chartOxygen   = new google.visualization.LineChart($('#chartOxygen').get(0));
+	var chartPH       = new google.visualization.LineChart($('#chartPH').get(0));
 
-	chartVoltage.draw(dataVoltage, {
-		title: 'Voltage',
+	chartTemp.draw(dataTemp, {
+		title: 'Water Temperature',
 		vAxis: {
-			'title': 'Voltage (V)'
+			'title': 'Temperature (deg C)'
 		},  
 		'height': 300,
 		colors: ['#ff0000']
 	});
-	chartCurrent.draw(dataCurrent, {
-		title: 'Current',
+	chartSalinity.draw(dataSalinity, {
+		title: 'Salinity',
 		vAxis: {
-			'title': 'Current (A)'
+			'title': 'Salinity (g/kg)'
 		},  
 		'height': 300, 
 		colors: ['#00ff00']
 	});
-	chartPower.draw(dataPower, {
-		title: 'Power',
+	chartOxygen.draw(dataOxygen, {
+		title: 'Dissolved Oxygen',
 		vAxis: {
-			'title': 'Power (W)'
+			'title': 'Dissolved Oxygen (mL/L)'
 		},  
 		'height': 300,
 		colors: ['#ffff00']
 	});
-	chartRPM.draw(dataRPM, {
-		title: 'RPM',
+	chartPH.draw(dataPH, {
+		title: 'pH',
 		vAxis: {
-			'title': 'RPM'
+			'title': 'pH'
 		},  
 		'height': 300,
 		colors: ['#2222ff']
-	});
-	chartThrust.draw(dataThrust, {
-		title: 'Thrust',
-		vAxis: {
-			'title': 'Thrust (lb)'
-		},  
-		'height': 300,  
-		colors: ['#888888']
-	});
-	chartSignal.draw(dataSignal, {
-		title: 'Signal',
-		vAxis: {
-			'title': 'Signal (us)'
-		},  
-		'height': 300,
-		colors: ['#0000aa']
 	});
 
 	});
