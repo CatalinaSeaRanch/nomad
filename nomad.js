@@ -168,45 +168,8 @@ function drawChart() {
 
 	});
 
-}
-
-function sendCommand() {
-  save();
-  var public_key = 'YGDq7JmrxXtyDEMNnmO0';
-  $.ajax({
-    url: 'http://data.sparkfun.com/input/' + public_key + '.json',
-    jsonp: 'callback',
-    cache: true,
-    dataType: 'jsonp',
-    data: {
-      private_key: document.getElementById("private_key").value,      
-      pulsewidtha: document.getElementById("inputA").value,
-      pulsewidthb: document.getElementById("inputB").value
-    },
-    success: function(response) {
-      if ( response.success ) {
-        document.getElementById("commandResponse").innerHTML = '<div class="alert alert-success" role="alert">Command Successfully Sent!</div>';
-        window.setTimeout(function(){clearCommandResponse()}, 10000);
-      } else {
-        document.getElementById("commandResponse").innerHTML = '<div class="alert alert-danger" role="alert">Command Failed: '+response.message+'</div>';
-        window.setTimeout(function(){clearCommandResponse()}, 10000);
-      }
-    }
-  });
-}
-
-function clearCommandResponse() {
-  document.getElementById("commandResponse").innerHTML = '';
-}
-
-function save() {
-  var text_to_save=document.getElementById('private_key').value;
-	localStorage.setItem("phant_private_key", text_to_save); // save the item
-}
-
-function retrieve() {
-	//var text=localStorage.getItem("phant_private_key"); // retrieve
-	//document.getElementById('private_key').value = text; // display
+	// recursive call to repeat this function
+  setTimeout(drawChart,10000);
 }
 
 function timerUpdate() {
@@ -220,17 +183,9 @@ function timerUpdate() {
   } else {
     document.getElementById("timeSinceUpdate").innerHTML = '<span class="label label-danger"><i class="fa fa-clock-o fa-lg"></i> '+Math.floor(elapsed/86400)+' days ago</span>';
   }
-}
 
-function drawLoop() {
-  retrieve();
-  drawChart();
-  window.setInterval(function(){
-    drawChart();
-  }, 5000);
-  window.setInterval(function(){
-    timerUpdate();
-  }, 1000);	
+  // recursive call to repeat this function
+  setTimeout(timerUpdate,1000);
 }
 
 // load chart lib
@@ -241,6 +196,9 @@ google.load('visualization', '1', {
 // grab IP on start
 updateAddress();
 
+// Start timer update
+timerUpdate();
+
 // call drawChart once google charts is loaded
-google.setOnLoadCallback(drawLoop);
+google.setOnLoadCallback(drawChart);
 
