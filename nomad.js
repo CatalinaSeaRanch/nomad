@@ -188,6 +188,13 @@ function timerUpdate() {
   setTimeout(timerUpdate,1000);
 }
 
+function cameraImageUpdate() {
+	document.getElementById("cameraImage").src = "http://nomadcam.catalinasearanch.com/camera1/latest.jpg?" + new Date().getTime();
+
+	// recursive call to repeat this function
+  setTimeout(cameraImageUpdate,30000);
+}
+
 // load chart lib
 google.load('visualization', '1', {
   packages: ['corechart']
@@ -198,6 +205,9 @@ updateAddress();
 
 // Start timer update
 timerUpdate();
+
+// Start loading camera images
+cameraImageUpdate();
 
 // call drawChart once google charts is loaded
 google.setOnLoadCallback(drawChart);
