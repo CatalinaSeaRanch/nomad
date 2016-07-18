@@ -28,16 +28,16 @@ while True:
 
 						time.sleep(1) # Sleep just in case the camera was still writing the image
 				
-						#try:
-						imageFile = open(newImage,'rb')
-						ftp = ftplib.FTP(options.hostname)
-						ftp.login(options.username,options.password)
-						ftp.storbinary('STOR camera1/latest.jpg',imageFile,1024)
-						ftp.quit()	
-						imageFile.close()
-						print "Image uploaded to server successfully."
-						#except:
-						#		print "Unknown FTP exception."
+						try:
+								imageFile = open(newImage,'rb')
+								ftp = ftplib.FTP(options.hostname)
+								ftp.login(options.username,options.password)
+								ftp.storbinary('STOR camera1/latest.jpg',imageFile,1024)
+								ftp.quit()	
+								imageFile.close()
+								print "Image uploaded to server successfully."
+						except:
+								print "Unknown FTP exception."
 
 						lastImg = newImage
 
