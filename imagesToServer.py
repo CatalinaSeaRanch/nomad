@@ -15,8 +15,6 @@ parser.add_option("-s","--src",dest="src",help="Source directory for image files
 
 lastImg = "none"
 
-ftp = ftplib.FTP(options.hostname)
-
 while True:
 		print "Searching for newest camera image..."
 		
@@ -50,4 +48,4 @@ while True:
 
 # To run this script on the onboard computer, add the following line
 # to rc.local:
-# screen -dm -S camera python /home/[username]/nomad/imagesToServer.py --hostname [hostname] --username [username] --password [password] --src [src dir]
+# screen -dmS camera python /home/[username]/nomad/imagesToServer.py --hostname [hostname] --username [username] --password [password] --src [src dir]
