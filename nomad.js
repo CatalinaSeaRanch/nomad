@@ -46,7 +46,7 @@ function updateAddress() {
 // onload callback
 function drawChart() {
 
-  var public_key = '7JvKZEOq2NtrpnxaoXW1';
+  var public_key = '0lgbR1rRQ9UgbE6LoLx1';
 
   var dataPage;
   var maxAge;
@@ -120,10 +120,13 @@ function drawChart() {
 					]);
 			}
 			if ( i == 0 ) {
-				document.getElementById("waterTempLabel").innerHTML = row.temperature;
+				document.getElementById("waterTempLabel").innerHTML = row.watertemp;
 				document.getElementById("salinityLabel").innerHTML = row.salinity;
-				document.getElementById("oxygenLabel").innerHTML = row.oxygen;
-				document.getElementById("pHLabel").innerHTML = row.pH;
+				document.getElementById("oxygenLabel").innerHTML = row.dissolvedo2;
+				document.getElementById("pHLabel").innerHTML = row.ph;
+				document.getElementById("currentLabel").innerHTML = row.voltage;
+				document.getElementById("voltageLabel").innerHTML = row.current;
+				document.getElementById("intTempLabel").innerHTML = row.internaltemp;
 				lastUpdateDate = new Date(row.timestamp);             
 			}
   	});
