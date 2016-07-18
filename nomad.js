@@ -189,7 +189,8 @@ function timerUpdate() {
 }
 
 function cameraImageUpdate() {
-	document.getElementById("cameraImage").src = "http://nomadcam.catalinasearanch.com/camera1/latest.jpg?" + new Date().getTime();
+	console.log("Requesting new camera image.");
+	document.getElementById("cameraImage").src = "http://nomadcam.catalinasearanch.com/camera1/latest.jpg#" + new Date().getTime();
 
 	if ( true ) {
 		document.getElementById("camAlive").style.color = 'YellowGreen';
@@ -198,7 +199,7 @@ function cameraImageUpdate() {
 	}
 
 	// recursive call to repeat this function
-  setTimeout(cameraImageUpdate,10000);
+  setTimeout(cameraImageUpdate,30000);
 }
 
 // load chart lib
