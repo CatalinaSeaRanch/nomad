@@ -26,9 +26,5 @@
 
 
 
-#to read temp of NEO processor: cat /sys/class/thermal/thermal_zone0/temp
-# import commands
-#//need to replace print with casting to internal temp variable
-#print(commands.getstatusoutput("cat /sys/class/thermal/thermal_zone0/temp"))
 
 
