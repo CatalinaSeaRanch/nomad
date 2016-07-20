@@ -32,26 +32,39 @@ ser = serial.Serial(
     stopbits=serial.STOPBITS_ONE,\
     bytesize=serial.EIGHTBITS,\
     timeout=3)
+count = 1
 while True:
-		if ser.inWaiting() == 73:
+		if ser.inWaiting() > 70:
 			input = ser.readline()
-			print input
-			temp = input.split(" ")[2]
-			conduct = input.split(" ")[4]
-			pressure = input.split(" ")[8]
-			DO = input.split(" ")[10]
-			PSU = input.split(" ")[12]
-			day = input.split(" ")[13]
-			month = input.split(" ")[14]
-			year = input.split(" ")[15]
-			time = input.split(" ")[16]
-			print temp
-			print DO
-			time.sleep(45)
-		else:
-			discard = ser.readline()
-
-
+			#print input
+			try:
+				temp = input.split(" ")[2]
+				temp = temp.replace(',', '')
+				conduct = input.split(" ")[4]
+                                conduct = conduct.replace(',', '')
+				pressure = input.split(" ")[8]
+                                pressure = pressure.replace(',', '')
+				DO = input.split(" ")[10]
+                                DO = DO.replace(',', '')
+				PSU = input.split(" ")[12]
+                                PSU = PSU.replace(',', '')
+				day = input.split(" ")[13]
+                                month = input.split(" ")[14]
+                                year = input.split(" ")[15]
+                                time = input.split(" ")[16]
+                                time = time.replace(',', '')
+				print temp
+                                print conduct
+				print pressure
+				print DO
+				print PSU
+				print time
+		
+			except:
+			#	print "not a packet with data"
+				time.sleep(8)
+		
+				
 
 #to read temp of NEO processor: cat /sys/class/thermal/thermal_zone0/temp
 # import commands

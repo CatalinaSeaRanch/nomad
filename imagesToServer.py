@@ -44,7 +44,7 @@ while True:
 				else:
 						print "No new images found."
 				
-		time.sleep(30)
+		time.sleep(60)
 
 # To run this script on the onboard computer, add the following line
 # to rc.local:
