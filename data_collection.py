@@ -41,25 +41,37 @@ while True:
 				temp = input.split(" ")[2]
 				temp = temp.replace(',', '')
 				conduct = input.split(" ")[4]
-                                conduct = conduct.replace(',', '')
+                conduct = conduct.replace(',', '')
 				pressure = input.split(" ")[8]
-                                pressure = pressure.replace(',', '')
+                pressure = pressure.replace(',', '')
 				DO = input.split(" ")[10]
-                                DO = DO.replace(',', '')
+                DO = DO.replace(',', '')
 				PSU = input.split(" ")[12]
-                                PSU = PSU.replace(',', '')
-				day = input.split(" ")[13]
-                                month = input.split(" ")[14]
-                                year = input.split(" ")[15]
-                                time = input.split(" ")[16]
-                                time = time.replace(',', '')
-				print temp
-                                print conduct
-				print pressure
-				print DO
-				print PSU
-				print time
-		
+                PSU = PSU.replace(',', '')
+				#day = input.split(" ")[13]
+                #month = input.split(" ")[14]
+                #year = input.split(" ")[15]
+                #time = input.split(" ")[16]
+                #time = time.replace(',', '')
+                f = open('seabird.nomad', 'w')
+				f.close()  #opens file and deletes contents
+				f = open('seabird.nomad','w') #opens file and inserts data
+				f.write('watertemp=')
+				f.write(temp)
+				f.write('&')
+				f.write('conductivity=')
+				f.write(conduct)
+				f.write('&')
+				f.write('pressure=')
+				f.write(pressure)
+				f.write('&')
+				f.write('DO=')
+				f.write(DO)
+				f.write('&')
+				f.write('PSU=')
+				f.write(PSU)
+				f.write('&')
+				f.close()
 			except:
 			#	print "not a packet with data"
 				time.sleep(8)
