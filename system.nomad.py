@@ -23,3 +23,4 @@ while True:
 		f.write('&')
 		time.sleep(10)
 		
+		#screen -dmS system.nomad python /home/udooer/nomad/system.nomad.py

@@ -78,5 +78,6 @@ while True:
 		
 				
 
+#screen -dmS seabird.nomad python /home/udooer/nomad/seabird.nomad.py
 
 
