@@ -2,29 +2,7 @@
 import serial
 import time
 
-#To read ADC values - for battery voltage and current sense amplifier output - 
-#
-#while True:
-#		raw = int(open("/sys/bus/iio/devices/iio:device0/in_voltage1_raw").read())
-#		scale = float(open("/sys/bus/iio/devices/iio:device0/in_voltage_scale").read())
-#		Batv = raw*scale*float(4.52941)*float(0.001)-float(1.214)
-#		print Batv
-#		time.sleep(5)
-
-# To communicate I2C with Atlas Scientific Sensors - easiest to use A9
-# with drivers / methods from pi image hosted by Atlas - avoid arduino? Libraries may
-# be available for either
-
-
-
-# Vemco Acoustic Receiver - 96008N1 - Tag ID / TIME
-
-
-
-
-
-
-#Seabird MicroCAT - 96008n1 - Conducitivity / DO / Pressure / TEMP (?)
+#Seabird MicroCAT - 96008n1 - Conducitivity / DO / Pressure / TEMP / PSU
 ser = serial.Serial(
     port='/dev/ttyUSB0',\
     baudrate=9600,\
@@ -53,8 +31,8 @@ while True:
                 #year = input.split(" ")[15]
                 #time = input.split(" ")[16]
                 #time = time.replace(',', '')
-                f = open('/home/udooer/nomad/data/seabird.nomad', 'w')
-				f.close()  #opens file and deletes contents
+        f = open('/home/udooer/nomad/data/seabird.nomad','w')
+				f.close()  #opens/closes file and deletes contents
 				f = open('/home/udooer/nomad/data/seabird.nomad','w') #opens file and inserts data
 				f.write('watertemp=')
 				f.write(temp)
@@ -78,5 +56,6 @@ while True:
 		
 				
 
+#screen -dmS seabird.nomad python /home/udooer/nomad/seabird.nomad.py
 
 

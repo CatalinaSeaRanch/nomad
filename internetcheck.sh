@@ -10,7 +10,8 @@ WGET="/usr/bin/wget"
 $WGET -q --tries=20 --timeout=15 http://www.google.com -O /tmp/google.idx &> /dev/null
 if [ ! -s /tmp/google.idx ]
 then
-        echo "offline"
+    echo "offline"
+    date -u
     echo 0 > /gpio/pin40/value
     sleep 15
     echo 1 > /gpio/pin40/value
@@ -21,3 +22,6 @@ else
 fi
 sleep 5m
 /bin/bash /home/udooer/nomad/internetcheck.sh
+#http://192.168.0.10/cgi-bin/luci/;stok=0c546a431d43da0a2531d207f1f2aee0/quick/system/reboot?reboot=1
+#install in rc.local with  with line for: 
+# screen -dmS internetcheck /home/udooer/nomad/internetcheck.sh
