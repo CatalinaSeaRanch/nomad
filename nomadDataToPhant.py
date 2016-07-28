@@ -31,15 +31,13 @@ while True:
 		print "Sending data to Sparkfun Phant..."
 		try: 
 				requestString = getURL+'?private_key='+options.private_key+'&'+requestData
-				r = requests.get(requestString)
+				r = requests.get(requestString,timeout=10)
 				print "Request:"
 				print requestString
 				print "Result: "
 				print r.text
-		except ValueError:
-				print "Unexpected error:", sys.exc_info()[0]
 		except:
-				print "Unknown error"
+				print "Unexpected error:", sys.exc_info()[0]
 
 		time.sleep(10)
 
