@@ -104,7 +104,7 @@ function drawChart() {
 			if ( Math.abs(mostRecent - new Date(row.timestamp)) < maxAge ) {
 				dataTemp.addRow([
 					(new Date(row.timestamp)),
-					parseFloat(row.temperature)
+					parseFloat(row.waterTemp)
 					]);
 				dataSalinity.addRow([
 					(new Date(row.timestamp)),
@@ -112,11 +112,11 @@ function drawChart() {
 					]);
 				dataOxygen.addRow([
 					(new Date(row.timestamp)),
-					parseFloat(row.oxygen)
+					parseFloat(row.dissolvedo2)
 					]);
 				dataPH.addRow([
 					(new Date(row.timestamp)),
-					parseFloat(row.pH)
+					parseFloat(row.ph)
 					]);
 			}
 			if ( i == 0 ) {
@@ -124,8 +124,8 @@ function drawChart() {
 				document.getElementById("salinityLabel").innerHTML = row.salinity;
 				document.getElementById("oxygenLabel").innerHTML = row.dissolvedo2;
 				document.getElementById("pHLabel").innerHTML = row.ph;
-				document.getElementById("currentLabel").innerHTML = row.voltage;
-				document.getElementById("voltageLabel").innerHTML = row.current;
+				document.getElementById("currentLabel").innerHTML = row.current;
+				document.getElementById("voltageLabel").innerHTML = row.voltage;
 				document.getElementById("intTempLabel").innerHTML = row.internaltemp;
 				lastUpdateDate = new Date(row.timestamp);             
 			}
