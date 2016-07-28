@@ -104,7 +104,7 @@ function drawChart() {
 			if ( Math.abs(mostRecent - new Date(row.timestamp)) < maxAge ) {
 				dataTemp.addRow([
 					(new Date(row.timestamp)),
-					parseFloat(row.waterTemp)
+					parseFloat(row.watertemp)
 					]);
 				dataSalinity.addRow([
 					(new Date(row.timestamp)),
