@@ -53,9 +53,9 @@ while True:
                 #year = input.split(" ")[15]
                 #time = input.split(" ")[16]
                 #time = time.replace(',', '')
-                f = open('seabird.nomad', 'w')
+                f = open('/home/udooer/nomad/data/seabird.nomad', 'w')
 				f.close()  #opens file and deletes contents
-				f = open('seabird.nomad','w') #opens file and inserts data
+				f = open('/home/udooer/nomad/data/seabird.nomad','w') #opens file and inserts data
 				f.write('watertemp=')
 				f.write(temp)
 				f.write('&')
