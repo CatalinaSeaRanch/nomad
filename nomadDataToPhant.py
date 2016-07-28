@@ -45,7 +45,7 @@ while True:
 
 # To run this on boot, add the following lines to /etc/rc.local
 #
-# screen -dmS phantIP python /home/[username]/nomad/nomadDataToPhant.py --key [private_key] --src [directory]
+# screen -dmS phantData python /home/[username]/nomad/nomadDataToPhant.py --key [private_key] --src [directory]
 
 # The .nomad data file format must be one single line in the following form:
 #
