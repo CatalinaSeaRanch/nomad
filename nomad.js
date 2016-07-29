@@ -167,7 +167,7 @@ function drawChart() {
 			'title': 'Conductivity (S/m)'
 		},  
 		'height': 300, 
-		colors: ['#00ff00']
+		colors: ['#0000ff']
 	});
 	chartOxygen.draw(dataOxygen, {
 		title: 'Dissolved Oxygen',
@@ -175,7 +175,7 @@ function drawChart() {
 			'title': 'Dissolved Oxygen (mL/L)'
 		},  
 		'height': 300,
-		colors: ['#ffff00']
+		colors: ['#ff00ff']
 	});
 	chartPH.draw(dataPH, {
 		title: 'pH',
