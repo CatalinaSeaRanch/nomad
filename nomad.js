@@ -135,6 +135,7 @@ function drawChart() {
 				document.getElementById("currentLabel").innerHTML = row.current;
 				document.getElementById("voltageLabel").innerHTML = row.voltage;
 				document.getElementById("intTempLabel").innerHTML = row.internaltemp;
+				document.getElementById("depthLabel").innerHTML = row.depth;
 				lastUpdateDate = new Date(row.timestamp);             
 			}
   	});
