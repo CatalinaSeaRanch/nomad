@@ -83,6 +83,7 @@ function drawChart() {
 
 		var dataTemp     = new google.visualization.DataTable();
 		var dataSalinity = new google.visualization.DataTable();
+		var dataConductivity = new google.visualization.DataTable();
 		var dataOxygen   = new google.visualization.DataTable();
 		var dataPH       = new google.visualization.DataTable();
 
@@ -90,6 +91,8 @@ function drawChart() {
 		dataTemp.addColumn('number', 'Water Temperature');
 		dataSalinity.addColumn('datetime', 'Time');
 		dataSalinity.addColumn('number', 'Salinity');
+		dataConductivity.addColumn('datetime', 'Time');
+		dataConductivity.addColumn('number', 'Conductivity');
 		dataOxygen.addColumn('datetime', 'Time');
 		dataOxygen.addColumn('number', 'Dissolved Oxygen');
 		dataPH.addColumn('datetime', 'Time');
@@ -110,6 +113,10 @@ function drawChart() {
 					(new Date(row.timestamp)),
 					parseFloat(row.salinity)
 					]);
+				dataConductivity.addRow([
+					(new Date(row.timestamp)),
+					parseFloat(row.conductivity)
+					]);
 				dataOxygen.addRow([
 					(new Date(row.timestamp)),
 					parseFloat(row.dissolvedo2)
@@ -122,6 +129,7 @@ function drawChart() {
 			if ( i == 0 ) {
 				document.getElementById("waterTempLabel").innerHTML = row.watertemp;
 				document.getElementById("salinityLabel").innerHTML = row.salinity;
+				document.getElementById("conductivityLabel").innerHTML = row.conductivity;
 				document.getElementById("oxygenLabel").innerHTML = row.dissolvedo2;
 				document.getElementById("pHLabel").innerHTML = row.ph;
 				document.getElementById("currentLabel").innerHTML = row.current;
@@ -133,6 +141,7 @@ function drawChart() {
 
 	var chartTemp     = new google.visualization.LineChart($('#chartTemp').get(0));
 	var chartSalinity = new google.visualization.LineChart($('#chartSalinity').get(0));
+	var chartConductivity = new google.visualization.LineChart($('#chartConductivity').get(0));
 	var chartOxygen   = new google.visualization.LineChart($('#chartOxygen').get(0));
 	var chartPH       = new google.visualization.LineChart($('#chartPH').get(0));
 
@@ -148,6 +157,14 @@ function drawChart() {
 		title: 'Salinity',
 		vAxis: {
 			'title': 'Salinity (g/kg)'
+		},  
+		'height': 300, 
+		colors: ['#00ff00']
+	});
+	chartConductivity.draw(dataConductivity, {
+		title: 'Conductivity',
+		vAxis: {
+			'title': 'Conductivity (S/m)'
 		},  
 		'height': 300, 
 		colors: ['#00ff00']
