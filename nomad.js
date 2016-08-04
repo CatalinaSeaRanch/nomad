@@ -178,6 +178,7 @@ function drawChart() {
 function drawCharts() {
 	if ( shouldUpdate ) {
 		console.log("Redrawing charts");
+		spinner(true);
 		chartTemp.draw(dataTemp, {
 			title: 'Water Temperature',
 			vAxis: {
@@ -223,6 +224,7 @@ function drawCharts() {
 			colors: ['#2222ff'],
 			pointSize: pointSize
 		});
+		spinner(false);
 	}
 }
 
