@@ -257,22 +257,27 @@ function updateChart() {
 						(new Date(row.timestamp)),
 						parseFloat(row.watertemp)
 						]]);
+					dataTemp.removeRow(dataTemp.getNumberOfRows()-1)
 					dataSalinity.insertRows(0,[[
 						(new Date(row.timestamp)),
 						parseFloat(row.salinity)
 						]]);
+					dataSalinity.removeRow(dataSalinity.getNumberOfRows()-1)
 					dataConductivity.insertRows(0,[[
 						(new Date(row.timestamp)),
 						parseFloat(row.conductivity)
 						]]);
+					dataConductivity.removeRow(dataConductivity.getNumberOfRows()-1)
 					dataOxygen.insertRows(0,[[
 						(new Date(row.timestamp)),
 						parseFloat(row.dissolvedo2)
 						]]);
+					dataOxygen.removeRow(dataOxygen.getNumberOfRows()-1)
 					dataPH.insertRows(0,[[
 						(new Date(row.timestamp)),
 						parseFloat(row.ph)
 						]]);
+					dataPH.removeRow(dataPH.getNumberOfRows()-1)
 
 					document.getElementById("waterTempLabel").innerHTML = row.watertemp;
 					document.getElementById("salinityLabel").innerHTML = row.salinity;
