@@ -18,10 +18,10 @@ function updateAddress() {
 		data: {
 			page: 1
 		},
+		jsonp: 'callback',
+		cache: true,
 		dataType: 'jsonp',
 	}).done(function (results) {
-		console.log(results);
-
 		$.each(results, function (i, row) {
 			if ( i == 0 ) {
 				date = new Date(row.timestamp);
@@ -43,8 +43,14 @@ function updateAddress() {
   setTimeout(updateAddress,30000);
 }
 
+function test() {
+	console.log("test");
+}
+
 // onload callback
 function drawChart() {
+	console.log("Drawing charts");
+	shouldUpdate = false;
 
   var public_key = '0lgbR1rRQ9UgbE6LoLx1';
 
@@ -54,12 +60,15 @@ function drawChart() {
   if ( document.getElementById("fiveMin").checked ) {
     dataPage = {page: 1};
     maxAge = 5*60*1000;
+    pointSize = 4;
   } else if ( document.getElementById("fifteenMin").checked ) {
     dataPage = {page: 1};
     maxAge = 15*60*1000;
+    pointSize = 2;
   } else if ( document.getElementById("oneHr").checked ) {
     dataPage = {page: 1};
     maxAge = 60*60*1000;
+    pointSize = 1;
   } else if ( document.getElementById("oneDay").checked ) {
     dataPage = {page: -1};
     maxAge = 60*60*24*1000;
@@ -78,14 +87,17 @@ function drawChart() {
 	var jsonData = $.ajax({
 		url: 'https://data.sparkfun.com/output/' + public_key + '.json',
 		data: dataPage,
+		jsonp: 'callback',
+		cache: true,
 		dataType: 'jsonp',
 	}).done(function (results) {
 
-		var dataTemp     = new google.visualization.DataTable();
-		var dataSalinity = new google.visualization.DataTable();
-		var dataConductivity = new google.visualization.DataTable();
-		var dataOxygen   = new google.visualization.DataTable();
-		var dataPH       = new google.visualization.DataTable();
+		// init data tables
+		dataTemp     = new google.visualization.DataTable();
+		dataSalinity = new google.visualization.DataTable();
+		dataConductivity = new google.visualization.DataTable();
+		dataOxygen   = new google.visualization.DataTable();
+		dataPH       = new google.visualization.DataTable();
 
 		dataTemp.addColumn('datetime', 'Time');
 		dataTemp.addColumn('number', 'Water Temperature');
@@ -140,57 +152,128 @@ function drawChart() {
 			}
   	});
 
-	var chartTemp     = new google.visualization.LineChart($('#chartTemp').get(0));
-	var chartSalinity = new google.visualization.LineChart($('#chartSalinity').get(0));
-	var chartConductivity = new google.visualization.LineChart($('#chartConductivity').get(0));
-	var chartOxygen   = new google.visualization.LineChart($('#chartOxygen').get(0));
-	var chartPH       = new google.visualization.LineChart($('#chartPH').get(0));
+	chartTemp     = new google.visualization.LineChart($('#chartTemp').get(0));
+	chartSalinity = new google.visualization.LineChart($('#chartSalinity').get(0));
+	chartConductivity = new google.visualization.LineChart($('#chartConductivity').get(0));
+	chartOxygen   = new google.visualization.LineChart($('#chartOxygen').get(0));
+	chartPH       = new google.visualization.LineChart($('#chartPH').get(0));
 
-	chartTemp.draw(dataTemp, {
-		title: 'Water Temperature',
-		vAxis: {
-			'title': 'Temperature (deg C)'
-		},  
-		'height': 300,
-		colors: ['#ff0000']
-	});
-	chartSalinity.draw(dataSalinity, {
-		title: 'Salinity',
-		vAxis: {
-			'title': 'Salinity (g/kg)'
-		},  
-		'height': 300, 
-		colors: ['#00ff00']
-	});
-	chartConductivity.draw(dataConductivity, {
-		title: 'Conductivity',
-		vAxis: {
-			'title': 'Conductivity (S/m)'
-		},  
-		'height': 300, 
-		colors: ['#0000ff']
-	});
-	chartOxygen.draw(dataOxygen, {
-		title: 'Dissolved Oxygen',
-		vAxis: {
-			'title': 'Dissolved Oxygen (mL/L)'
-		},  
-		'height': 300,
-		colors: ['#ff00ff']
-	});
-	chartPH.draw(dataPH, {
-		title: 'pH',
-		vAxis: {
-			'title': 'pH'
-		},  
-		'height': 300,
-		colors: ['#2222ff']
-	});
+	drawCharts();
 
 	});
+
+	shouldUpdate = true;
+}
+
+function drawCharts() {
+	if ( shouldUpdate ) {
+		chartTemp.draw(dataTemp, {
+			title: 'Water Temperature',
+			vAxis: {
+				'title': 'Temperature (deg C)'
+			},  
+			'height': 300,
+			colors: ['#ff0000'],
+			pointSize: pointSize
+		});
+		chartSalinity.draw(dataSalinity, {
+			title: 'Salinity',
+			vAxis: {
+				'title': 'Salinity (g/kg)'
+			},  
+			'height': 300, 
+			colors: ['#00ff00'],
+			pointSize: pointSize
+		});
+		chartConductivity.draw(dataConductivity, {
+			title: 'Conductivity',
+			vAxis: {
+				'title': 'Conductivity (S/m)'
+			},  
+			'height': 300, 
+			colors: ['#0000ff'],
+			pointSize: pointSize
+		});
+		chartOxygen.draw(dataOxygen, {
+			title: 'Dissolved Oxygen',
+			vAxis: {
+				'title': 'Dissolved Oxygen (mL/L)'
+			},  
+			'height': 300,
+			colors: ['#ff00ff'],
+			pointSize: pointSize
+		});
+		chartPH.draw(dataPH, {
+			title: 'pH',
+			vAxis: {
+				'title': 'pH'
+			},  
+			'height': 300,
+			colors: ['#2222ff'],
+			pointSize: pointSize
+		});
+	}
+}
+
+function updateChart() {
+	if ( shouldUpdate ) {
+		console.log("Update data");
+
+		var public_key = '0lgbR1rRQ9UgbE6LoLx1';
+
+		// JSONP request
+		var jsonData = $.ajax({
+			url: 'https://data.sparkfun.com/output/' + public_key + '.json',
+			data: {page: 1},
+			jsonp: 'callback',
+			cache: true,
+			dataType: 'jsonp',
+		}).done(function (results) {
+
+			var mostRecent;
+
+			$.each(results, function (i, row) {
+				if ( i == 0 ) {
+					dataTemp.addRow([
+						(new Date(row.timestamp)),
+						parseFloat(row.watertemp)
+						]);
+					dataSalinity.addRow([
+						(new Date(row.timestamp)),
+						parseFloat(row.salinity)
+						]);
+					dataConductivity.addRow([
+						(new Date(row.timestamp)),
+						parseFloat(row.conductivity)
+						]);
+					dataOxygen.addRow([
+						(new Date(row.timestamp)),
+						parseFloat(row.dissolvedo2)
+						]);
+					dataPH.addRow([
+						(new Date(row.timestamp)),
+						parseFloat(row.ph)
+						]);
+
+					document.getElementById("waterTempLabel").innerHTML = row.watertemp;
+					document.getElementById("salinityLabel").innerHTML = row.salinity;
+					document.getElementById("conductivityLabel").innerHTML = row.conductivity;
+					document.getElementById("oxygenLabel").innerHTML = row.dissolvedo2;
+					document.getElementById("pHLabel").innerHTML = row.ph;
+					document.getElementById("currentLabel").innerHTML = row.current;
+					document.getElementById("voltageLabel").innerHTML = row.voltage;
+					document.getElementById("intTempLabel").innerHTML = row.internaltemp;
+					document.getElementById("depthLabel").innerHTML = row.depth;
+					lastUpdateDate = new Date(row.timestamp);             
+				}
+	  	});
+		});
+	}
+
+	drawCharts();
 
 	// recursive call to repeat this function
-  setTimeout(drawChart,10000);
+  setTimeout(updateChart,10000);
 }
 
 function timerUpdate() {
@@ -210,7 +293,6 @@ function timerUpdate() {
 }
 
 function cameraImageUpdate() {
-	console.log("Requesting new camera image.");
 	document.getElementById("cameraImage").src = "http://nomadcam.catalinasearanch.com/camera1/latest.jpg#" + new Date().getTime();
 
 	if ( true ) {
@@ -228,6 +310,22 @@ google.load('visualization', '1', {
   packages: ['corechart']
 });
 
+// init data tables
+var dataTemp;
+var dataSalinity;
+var dataConductivity;
+var dataOxygen;
+var dataPH;
+
+var chartTemp;
+var chartSalinity;
+var chartConductivity;
+var chartOxygen;
+var chartPH;
+
+var shouldUpdate = false;
+var pointSize = 0;
+
 // grab IP on start
 updateAddress();
 
@@ -239,4 +337,7 @@ cameraImageUpdate();
 
 // call drawChart once google charts is loaded
 google.setOnLoadCallback(drawChart);
+
+// start update cycle
+setTimeout(updateChart,10000);
 
