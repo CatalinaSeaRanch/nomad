@@ -160,9 +160,9 @@ function drawChart() {
 
 	drawCharts();
 
-	});
-
+	console.log("Enabling live updates");
 	shouldUpdate = true;
+	});
 }
 
 function drawCharts() {
@@ -234,26 +234,26 @@ function updateChart() {
 
 			$.each(results, function (i, row) {
 				if ( i == 0 ) {
-					dataTemp.addRow([
+					dataTemp.insertRows(0,[[
 						(new Date(row.timestamp)),
 						parseFloat(row.watertemp)
-						]);
-					dataSalinity.addRow([
+						]]);
+					dataSalinity.insertRows(0,[[
 						(new Date(row.timestamp)),
 						parseFloat(row.salinity)
-						]);
-					dataConductivity.addRow([
+						]]);
+					dataConductivity.insertRows(0,[[
 						(new Date(row.timestamp)),
 						parseFloat(row.conductivity)
-						]);
-					dataOxygen.addRow([
+						]]);
+					dataOxygen.insertRows(0,[[
 						(new Date(row.timestamp)),
 						parseFloat(row.dissolvedo2)
-						]);
-					dataPH.addRow([
+						]]);
+					dataPH.insertRows(0,[[
 						(new Date(row.timestamp)),
 						parseFloat(row.ph)
-						]);
+						]]);
 
 					document.getElementById("waterTempLabel").innerHTML = row.watertemp;
 					document.getElementById("salinityLabel").innerHTML = row.salinity;
@@ -268,12 +268,11 @@ function updateChart() {
 				}
 	  	});
 		});
+		drawCharts();
+
+		// recursive call to repeat this function
+	  setTimeout(updateChart,10000);
 	}
-
-	drawCharts();
-
-	// recursive call to repeat this function
-  setTimeout(updateChart,10000);
 }
 
 function timerUpdate() {
