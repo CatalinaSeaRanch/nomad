@@ -94,9 +94,11 @@ function drawChart() {
 		dataType: 'jsonp',
 		beforeSend: function() {
 			spinner(true);
+			enableRangeSelector(false);
 		},
 		complete: function() {
 			spinner(false);
+			enableRangeSelector(true);
 		}
 	}).done(function (results) {
 
@@ -175,6 +177,7 @@ function drawChart() {
 
 function drawCharts() {
 	if ( shouldUpdate ) {
+		console.log("Redrawing charts");
 		chartTemp.draw(dataTemp, {
 			title: 'Water Temperature',
 			vAxis: {
@@ -283,10 +286,10 @@ function updateChart() {
 	  	});
 		});
 		drawCharts();
-
-		// recursive call to repeat this function
-	  setTimeout(updateChart,10000);
 	}
+
+	// recursive call to repeat this function
+	setTimeout(updateChart,10000);
 }
 
 function timerUpdate() {
@@ -335,6 +338,22 @@ function cameraImageUpdate() {
   setTimeout(cameraImageUpdate,30000);
 }
 
+function enableRangeSelector(enable) {
+	var radioClass;
+	if (enable) {
+		radioClass = "btn btn-primary";
+	} else {
+		radioClass = "btn btn-primary disabled";
+	}
+	document.getElementById("fiveMinLabel").className = radioClass;
+	document.getElementById("fifteenMinLabel").className = radioClass;
+	document.getElementById("oneHrLabel").className = radioClass;
+	document.getElementById("oneDayLabel").className = radioClass;
+	document.getElementById("oneWeekLabel").className = radioClass;
+	document.getElementById("oneMonthLabel").className = radioClass;
+	document.getElementById("allPagesLabel").className = radioClass;
+}
+
 // load chart lib
 google.load('visualization', '1', {
   packages: ['corechart']
@@ -364,6 +383,9 @@ timerUpdate();
 
 // Start loading camera images
 cameraImageUpdate();
+
+// disable range selector
+enableRangeSelector(false);
 
 // call drawChart once google charts is loaded
 google.setOnLoadCallback(drawChart);
