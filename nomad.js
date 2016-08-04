@@ -21,6 +21,12 @@ function updateAddress() {
 		jsonp: 'callback',
 		cache: true,
 		dataType: 'jsonp',
+		beforeSend: function() {
+			spinner(true);
+		},
+		complete: function() {
+			spinner(false);
+		}
 	}).done(function (results) {
 		$.each(results, function (i, row) {
 			if ( i == 0 ) {
@@ -41,10 +47,6 @@ function updateAddress() {
 
 	// recursive call to repeat this function
   setTimeout(updateAddress,30000);
-}
-
-function test() {
-	console.log("test");
 }
 
 // onload callback
@@ -90,6 +92,12 @@ function drawChart() {
 		jsonp: 'callback',
 		cache: true,
 		dataType: 'jsonp',
+		beforeSend: function() {
+			spinner(true);
+		},
+		complete: function() {
+			spinner(false);
+		}
 	}).done(function (results) {
 
 		// init data tables
@@ -228,6 +236,12 @@ function updateChart() {
 			jsonp: 'callback',
 			cache: true,
 			dataType: 'jsonp',
+			beforeSend: function() {
+				spinner(true);
+			},
+			complete: function() {
+				spinner(false);
+			}
 		}).done(function (results) {
 
 			var mostRecent;
@@ -289,6 +303,23 @@ function timerUpdate() {
 
   // recursive call to repeat this function
   setTimeout(timerUpdate,1000);
+}
+
+var spinnerCount = 0;
+function spinner(on) {
+	if ( on ) {
+		spinnerCount++;
+	} else {
+		spinnerCount--;
+		if ( spinner < 0 ) {
+			spinner = 0;
+		}
+	}
+	if ( spinnerCount > 0 ) {
+		document.getElementById("spinner").innerHTML = '<i class="fa fa-spinner fa-pulse fa-fw"></i>';
+	} else {
+		document.getElementById("spinner").innerHTML = '';
+	}
 }
 
 function cameraImageUpdate() {
