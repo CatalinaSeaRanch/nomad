@@ -31,12 +31,18 @@ for x in range(0,1000):
         gfile.write(',')
         gfile.write(gdata)
         x=x+1
-	#afile.close()
-	#mfile.close()
-	#gfile.close()
-        time.sleep(0.01)
+        time.sleep(0.02)
 afile.close()
 mfile.close()
 gfile.close()
+
+
+##fft
+
+
+##save plot
+
+
+## upload plot
 print "done!"
 
