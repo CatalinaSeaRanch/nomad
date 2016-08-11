@@ -41,6 +41,7 @@
 				</ul>-->
 			</div><!--/.nav-collapse -->
 			<div class="pull-right" style="margin-top:-40px">
+				<span id="spinner"></span>
 				<span id="timeSinceUpdate"></span>
 			</div>
 		</div>
@@ -51,7 +52,7 @@
 			<div class="col-md-6">
 				<h1>Live Data </h1>
 				<p>This website shows live oceanographic data gathered by the Catalina Sea Ranch <em>NOMAD Buoy</em>, anchored six miles south of San Pedro, CA on the Catalina Sea Ranch aquaculture location. The data is gathered by a variety of sensors and uploaded to a cloud server every few seconds.</p>
-				<p>The current suite of sensors include a SeaBird MicroCat provided by Kristen Davis of UCI, a VEMCO VR2C acoustic tag receiver provided by Chris Lowe of CSULB's Shark Lab, and low cost sensors from Atlas Scientific for comparative analysis. Mechanical, electrical, and software development supporting this installation was undertaken by <a href="http://oceanlab.com/staff/tony-white/">Tony White</a> and <a href="http://bluerobotics.com">Rustom Jehangir</a>.</p>
+				<p>The current suite of sensors <a href="http://nomad.catalinasearanch.com/sensors.html">are detailed here</a>. Mechanical, electrical, and software development supporting this installation was undertaken by <a href="http://oceanlab.com/staff/tony-white/">Tony White</a> and <a href="http://bluerobotics.com">Rustom Jehangir</a>.</p>
 				<a href="http://catalinasearanch.com"><img src="assets/images/csr-logo-1.jpg" class="img-responsive" style="max-width:250px" /></a>
 				<br />
 				<a href="http://bluerobotics.com"><img src="assets/images/br-logo.png" class="img-responsive" style="max-width:200px" /></a>
@@ -212,26 +213,26 @@
 
 			<div class="btn-group btn-group-xs pull-right" data-toggle="buttons">
 
-				<label class="btn btn-primary">
-					<input type="radio" name="pageSelector" id="fiveMin">5 Min
+				<label id="fiveMinLabel" class="btn btn-primary">
+					<input type="radio" name="pageSelector" id="fiveMin" onchange="drawChart();">5 Min
 				</label>
-				<label class="btn btn-primary">
-					<input type="radio" name="pageSelector" id="fifteenMin">15 Min
+				<label id="fifteenMinLabel" class="btn btn-primary">
+					<input type="radio" name="pageSelector" id="fifteenMin" onchange="drawChart();">15 Min
 				</label>				
-				<label class="btn btn-primary">
-					<input type="radio" name="pageSelector" id="oneHr">1 Hr
+				<label id="oneHrLabel" class="btn btn-primary">
+					<input type="radio" name="pageSelector" id="oneHr" onchange="drawChart();">1 Hr
 				</label>
-				<label class="btn btn-primary active">
-					<input type="radio" name="pageSelector" id="oneDay" checked>1 Day
+				<label id="oneDayLabel" class="btn btn-primary active">
+					<input type="radio" name="pageSelector" id="oneDay" onchange="drawChart();" checked>1 Day
 				</label>				
-				<label class="btn btn-primary">
-					<input type="radio" name="pageSelector" id="oneWeek">1 Week
+				<label id="oneWeekLabel" class="btn btn-primary">
+					<input type="radio" name="pageSelector" id="oneWeek" onchange="drawChart();">1 Week
 				</label>				
-				<label class="btn btn-primary">
-					<input type="radio" name="pageSelector" id="oneMonth">1 Month
+				<label id="oneMonthLabel" class="btn btn-primary">
+					<input type="radio" name="pageSelector" id="oneMonth" onchange="drawChart();">1 Month
 				</label>												
-				<label class="btn btn-primary">
-					<input type="radio" name="pageSelector" id="allPages">All Data
+				<label id="allPagesLabel" class="btn btn-primary">
+					<input type="radio" name="pageSelector" id="allPages" onchange="drawChart();">All Data
 				</label>
 			</div>
 
