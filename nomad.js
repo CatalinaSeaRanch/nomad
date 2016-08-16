@@ -61,37 +61,32 @@ function drawChart() {
 
   var dataPage;
   var maxAge;
+  var sinceDate;
 
   if ( document.getElementById("fiveMin").checked ) {
-    dataPage = {page: 1};
-    maxAge = 5*60*1000;
+    sinceDate = "-5minutes";
     pointSize = 4;
   } else if ( document.getElementById("fifteenMin").checked ) {
-    dataPage = {page: 1};
-    maxAge = 15*60*1000;
+    sinceDate = "-15minutes";
     pointSize = 2;
   } else if ( document.getElementById("oneHr").checked ) {
-    dataPage = {page: 1};
-    maxAge = 60*60*1000;
+    sinceDate = "-60minutes";
     pointSize = 1;
   } else if ( document.getElementById("oneDay").checked ) {
-    dataPage = {page: -1};
-    maxAge = 60*60*24*1000;
+    sinceDate = "-24hours";
   } else if ( document.getElementById("oneWeek").checked ) {
-    dataPage = {page: -1};
-    maxAge = 60*60*24*7*1000;
+    sinceDate = "-7days";
   } else if ( document.getElementById("oneMonth").checked ) {
-    dataPage = {page: -1};
-    maxAge = 60*60*24*7*30*1000;
+    sinceDate = "-30days";
   } else if ( document.getElementById("allPages").checked ) {
-    dataPage = {page: -1};
-    maxAge = Math.abs(new Date());
+    sinceDate = "";
   }
+
+  console.log("Request: "+'https://data.sparkfun.com/output/' + public_key + '.json' + '?gte[timestamp]='+sinceDate);
 
 	// JSONP request
 	var jsonData = $.ajax({
-		url: data_base_url + data_public_key + '.json',
-		data: dataPage,
+		url: data_base_url + data_public_key + '.json' + '?gte[timestamp]='+sinceDate,
 		jsonp: 'callback',
 		cache: true,
 		dataType: 'jsonp',
@@ -129,28 +124,28 @@ function drawChart() {
 			if ( i == 0 ) {
 				mostRecent = new Date(row.timestamp);
 			}
-			if ( Math.abs(mostRecent - new Date(row.timestamp)) < maxAge ) {
-				dataTemp.addRow([
-					(new Date(row.timestamp)),
-					parseFloat(row.watertemp)
-					]);
-				dataSalinity.addRow([
-					(new Date(row.timestamp)),
-					parseFloat(row.salinity)
-					]);
-				dataConductivity.addRow([
-					(new Date(row.timestamp)),
-					parseFloat(row.conductivity)
-					]);
-				dataOxygen.addRow([
-					(new Date(row.timestamp)),
-					parseFloat(row.dissolvedo2)
-					]);
-				dataDepth.addRow([
-					(new Date(row.timestamp)),
-					parseFloat(row.depth)
-					]);
-			}
+
+			dataTemp.addRow([
+				(new Date(row.timestamp)),
+				parseFloat(row.watertemp)
+				]);
+			dataSalinity.addRow([
+				(new Date(row.timestamp)),
+				parseFloat(row.salinity)
+				]);
+			dataConductivity.addRow([
+				(new Date(row.timestamp)),
+				parseFloat(row.conductivity)
+				]);
+			dataOxygen.addRow([
+				(new Date(row.timestamp)),
+				parseFloat(row.dissolvedo2)
+				]);
+			dataDepth.addRow([
+				(new Date(row.timestamp)),
+				parseFloat(row.depth)
+				]);
+
 			if ( i == 0 ) {
 				document.getElementById("waterTempLabel").innerHTML = row.watertemp;
 				document.getElementById("salinityLabel").innerHTML = row.salinity;
@@ -237,8 +232,12 @@ function updateChart() {
 
 		// JSONP request
 		var jsonData = $.ajax({
+<<<<<<< 5942a008a414f51a12551f5e014c8ce39c09d138
 			url: data_base_url + data_public_key + '.json',
 			data: {page: 1},
+=======
+			url: 'https://data.sparkfun.com/output/' + public_key + '.json?gte[timestamp]=-60seconds',
+>>>>>>> Switch to requesting only the data that is needed.
 			jsonp: 'callback',
 			cache: true,
 			dataType: 'jsonp',
@@ -391,13 +390,13 @@ function enableRangeSelector(enable) {
 	} else {
 		radioClass = "btn btn-primary disabled";
 	}
-	document.getElementById("fiveMinLabel").className = radioClass;
-	document.getElementById("fifteenMinLabel").className = radioClass;
-	document.getElementById("oneHrLabel").className = radioClass;
-	document.getElementById("oneDayLabel").className = radioClass;
-	document.getElementById("oneWeekLabel").className = radioClass;
-	document.getElementById("oneMonthLabel").className = radioClass;
-	document.getElementById("allPagesLabel").className = radioClass;
+	document.getElementById("fiveMinLabel").className = radioClass + (document.getElementById("fiveMinLabel").classList.contains("active") ? " active" : "");
+	document.getElementById("fifteenMinLabel").className = radioClass + (document.getElementById("fifteenMinLabel").classList.contains("active") ? " active" : "");
+	document.getElementById("oneHrLabel").className = radioClass + (document.getElementById("oneHrLabel").classList.contains("active") ? " active" : "");
+	document.getElementById("oneDayLabel").className = radioClass + (document.getElementById("oneDayLabel").classList.contains("active") ? " active" : "");
+	document.getElementById("oneWeekLabel").className = radioClass + (document.getElementById("oneWeekLabel").classList.contains("active") ? " active" : "");
+	document.getElementById("oneMonthLabel").className = radioClass + (document.getElementById("oneMonthLabel").classList.contains("active") ? " active" : "");
+	document.getElementById("allPagesLabel").className = radioClass + (document.getElementById("allPagesLabel").classList.contains("active") ? " active" : "");
 }
 
 // load chart lib
@@ -422,7 +421,7 @@ var shouldUpdate = false;
 var pointSize = 0;
 
 // grab IP on start
-updateAddress();
+//updateAddress();
 
 // Start timer update
 timerUpdate();
