@@ -28,10 +28,11 @@ while True:
 				
 						try:
 								imageFile = open(newImage,'rb')
+								imageFileAgain = open(newImage,'rb')
 								ftp = ftplib.FTP(options.hostname)
 								ftp.login(options.username,options.password)
 								ftp.storbinary('STOR camera1/latest.jpg',imageFile,1024)
-								ftp.storbinary('STOR camera1/nomad-'+time.strftime("%Y%m%d-%H%M%S")+'.jpg',imageFile,1024)
+								ftp.storbinary('STOR camera1/nomad-'+time.strftime("%Y%m%d-%H%M%S")+'.jpg',imageFileAgain,1024)
 								ftp.quit()	
 								imageFile.close()
 								print "Image uploaded to server successfully."
