@@ -352,7 +352,7 @@ function cameraImageUpdate() {
         }
 
         if ( count++ <= 8 ) {
-        	thumbnailHTML += '<div class="col-sm-3 col-md-3 col-lg-3">';
+        	thumbnailHTML += '<div class="col-sm-6 col-md-3 col-lg-3">';
         	thumbnailHTML += '<div class="thumbnail">';
         	thumbnailHTML += '<a href="http://nomadcam.catalinasearanch.com/camera1/'+image+'">';
         	thumbnailHTML += '<img src="http://nomadcam.catalinasearanch.com/camera1/'+image+'" class="img-responsive" />';
