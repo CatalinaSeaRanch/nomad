@@ -107,7 +107,7 @@ function drawChart() {
 		dataSalinity = new google.visualization.DataTable();
 		dataConductivity = new google.visualization.DataTable();
 		dataOxygen   = new google.visualization.DataTable();
-		dataPH       = new google.visualization.DataTable();
+		dataDepth       = new google.visualization.DataTable();
 
 		dataTemp.addColumn('datetime', 'Time');
 		dataTemp.addColumn('number', 'Water Temperature');
@@ -117,8 +117,8 @@ function drawChart() {
 		dataConductivity.addColumn('number', 'Conductivity');
 		dataOxygen.addColumn('datetime', 'Time');
 		dataOxygen.addColumn('number', 'Dissolved Oxygen');
-		dataPH.addColumn('datetime', 'Time');
-		dataPH.addColumn('number', 'pH');
+		dataDepth.addColumn('datetime', 'Time');
+		dataDepth.addColumn('number', 'Depth');
 
 		var mostRecent;
 
@@ -143,9 +143,9 @@ function drawChart() {
 					(new Date(row.timestamp)),
 					parseFloat(row.dissolvedo2)
 					]);
-				dataPH.addRow([
+				dataDepth.addRow([
 					(new Date(row.timestamp)),
-					parseFloat(row.ph)
+					parseFloat(row.depth)
 					]);
 			}
 			if ( i == 0 ) {
@@ -166,7 +166,7 @@ function drawChart() {
 	chartSalinity = new google.visualization.LineChart($('#chartSalinity').get(0));
 	chartConductivity = new google.visualization.LineChart($('#chartConductivity').get(0));
 	chartOxygen   = new google.visualization.LineChart($('#chartOxygen').get(0));
-	chartPH       = new google.visualization.LineChart($('#chartPH').get(0));
+	chartDepth       = new google.visualization.LineChart($('#chartDepth').get(0));
 
 	drawCharts();
 
@@ -215,10 +215,10 @@ function drawCharts() {
 			colors: ['#ff00ff'],
 			pointSize: pointSize
 		});
-		chartPH.draw(dataPH, {
-			title: 'pH',
+		chartDepth.draw(dataDepth, {
+			title: 'Depth',
 			vAxis: {
-				'title': 'pH'
+				'title': 'Depth'
 			},  
 			'height': 300,
 			colors: ['#2222ff'],
@@ -257,27 +257,22 @@ function updateChart() {
 						(new Date(row.timestamp)),
 						parseFloat(row.watertemp)
 						]]);
-					dataTemp.removeRow(dataTemp.getNumberOfRows()-1)
 					dataSalinity.insertRows(0,[[
 						(new Date(row.timestamp)),
 						parseFloat(row.salinity)
 						]]);
-					dataSalinity.removeRow(dataSalinity.getNumberOfRows()-1)
 					dataConductivity.insertRows(0,[[
 						(new Date(row.timestamp)),
 						parseFloat(row.conductivity)
 						]]);
-					dataConductivity.removeRow(dataConductivity.getNumberOfRows()-1)
 					dataOxygen.insertRows(0,[[
 						(new Date(row.timestamp)),
 						parseFloat(row.dissolvedo2)
 						]]);
-					dataOxygen.removeRow(dataOxygen.getNumberOfRows()-1)
-					dataPH.insertRows(0,[[
+					dataDepth.insertRows(0,[[
 						(new Date(row.timestamp)),
-						parseFloat(row.ph)
+						parseFloat(row.depth)
 						]]);
-					dataPH.removeRow(dataPH.getNumberOfRows()-1)
 
 					document.getElementById("waterTempLabel").innerHTML = row.watertemp;
 					document.getElementById("salinityLabel").innerHTML = row.salinity;
@@ -399,13 +394,13 @@ var dataTemp;
 var dataSalinity;
 var dataConductivity;
 var dataOxygen;
-var dataPH;
+var dataDepth;
 
 var chartTemp;
 var chartSalinity;
 var chartConductivity;
 var chartOxygen;
-var chartPH;
+var chartDepth;
 
 var shouldUpdate = false;
 var pointSize = 0;
