@@ -1,26 +1,37 @@
 import serial
 import time
 import os
-
+from math import log10, floor
+def round_to_1(x):
+	return round(x, -int(floor(log10(abs(x)))))
 #To read ADC values - for battery voltage and current sense amplifier output - 
 
-while True:
-		raw = int(open("/sys/bus/iio/devices/iio:device0/in_voltage1_raw").read())
+while True:	
+		raw = int(open("/sys/bus/iio/devices/iio:device0/in_voltage1_raw").read())		
 		scale = float(open("/sys/bus/iio/devices/iio:device0/in_voltage_scale").read())
 		Batv = raw*scale*float(4.52941)*float(0.001)-float(1.214)
-		#print Batv
+		Batv = round(Batv,3)
+		print "Battery Voltage:"
+		print Batv
 		output=os.popen('cat /sys/devices/virtual/thermal/thermal_zone0/temp').read()
 		InternalTemp = float(output)/1000
-		#print udoo_temp
-		f = open('system.nomad','w')
+		print "internal temp:"
+		print InternalTemp
+		f = open('/home/udooer/nomad/data/system.nomad','w')
 		f.close()  #opens/closes file and deletes contents
-		f = open('system.nomad','w') #opens file and inserts data
-		f.write('voltage')
-		f.write(Batv)
+		f = open('/home/udooer/nomad/data/system.nomad','w') #opens file and inserts data
+		f.write('current=0.0')
 		f.write('&')
-		f.write('internaltemp')
-		f.write(InternalTemp)
+		f.write('internaltemp=')
+		f.write(str(InternalTemp))
 		f.write('&')
+		f.write('voltage=')   
+                f.write(str(Batv))
+		f.write('&')
+		f.close()
+		print "data written"
 		time.sleep(10)
-		
+		#except:
+		#	print "Error!"
+		#	time.sleep(5)		
 		#screen -dmS system.nomad python /home/udooer/nomad/system.nomad.py
