@@ -342,7 +342,9 @@ function cameraImageUpdate() {
   	var thumbnailHTML = '';
   	var count = 0;
 
-    $(data).find("a:contains(.jpg)").each(function(){
+  	jQuery.fn.reverse = [].reverse;
+
+    $($(data).find("a:contains(.jpg)")).reverse().each(function(){
         // will loop through 
         var image = $(this).attr("href");
 
