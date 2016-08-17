@@ -1,6 +1,11 @@
 #sample imu and upload one minute of data hourly to ftp
 import time
 import os 
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.fftpack
+from numpy import genfromtxt
+
 afile = open('afile.csv', 'w')
 afile.close()
 mfile = open('mfile.csv', 'w')
@@ -8,7 +13,7 @@ mfile.close()
 gfile = open('gfile.csv', 'w')
 gfile.close()
 
-for x in range(0,1000):
+for x in range(0,1500):
         accel = open('/sensors/accelerometer/data','r')
         mag = open('/sensors/magnetometer/data','r')
         gyro = open('/sensors/gyroscope/data','r')
@@ -31,21 +36,29 @@ for x in range(0,1000):
         gfile.write(',')
         gfile.write(gdata)
         x=x+1
-        time.sleep(0.02)
+        time.sleep(0.04)
 afile.close()
 mfile.close()
 gfile.close()
 
-N = 750 # number of samples
+N = 1500 # number of samples
 T = 1.0 / 25.0 # sample spacing
 x = np.linspace(0.0, N*T, N)
-y= genfromtxt('afile.csv', delimiter=',', usecols=2) #1=x, 2=y, 3=z for columns
+y= genfromtxt('afile.csv', delimiter=',', usecols=1) #1=x, 2=y, 3=z for columns
 yf = scipy.fftpack.fft(y)
 yf = 1/yf #convert to graph of frequency of periods
 xf = np.linspace(0.0, 1.0/(2.0*T), N/2)
 plt.plot(xf[1:], 2.0/N * np.abs(yf[0:N/2])[1:])
+plt.xlabel('Period (seconds)')
+plt.ylabel('Magnitude of Occurrence')
+plt.title('FFT of Acclerometer Data')
+plt.grid(True)
+#plt.xticks(np.arange(min(x), max(x)+1, 2.0))
+#max_y = max(y)
+#max_x = x[y.index(max_y)]
+#plt.annotate('Dominant Period', xy=(max_x,max_y),xytext=(max_x+1,max_y+0.00001),arrowprops=dict(facecolor='black', shrink=0.01))
 #plt.show()
-plt.savefig('fft.png')##save plot
+plt.savefig('ffta1.png')##save plot
 
 
 
