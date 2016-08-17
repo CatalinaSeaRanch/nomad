@@ -336,6 +336,36 @@ function cameraImageUpdate() {
 		document.getElementById("camAlive").style.color = 'red';
 	}
 
+	$.ajax({
+  url: "http://nomadcam.catalinasearanch.com/camera1/",
+  success: function(data){
+  	var thumbnailHTML = '';
+  	var count = 0;
+
+  	jQuery.fn.reverse = [].reverse;
+
+    $($(data).find("a:contains(.jpg)")).reverse().each(function(){
+        // will loop through 
+        var image = $(this).attr("href");
+
+        if ( count == 0 ) {
+        	count++;
+        	return;
+        }
+
+        if ( count++ <= 8 ) {
+        	thumbnailHTML += '<div class="col-sm-6 col-md-3 col-lg-3">';
+        	thumbnailHTML += '<div class="thumbnail">';
+        	thumbnailHTML += '<a href="http://nomadcam.catalinasearanch.com/camera1/'+image+'">';
+        	thumbnailHTML += '<img src="http://nomadcam.catalinasearanch.com/camera1/'+image+'" class="img-responsive" />';
+        	thumbnailHTML += '</a></div></div>';
+        }
+     });
+
+    document.getElementById("cameraThumbSpan").innerHTML = thumbnailHTML;
+  }
+});
+
 	// recursive call to repeat this function
   setTimeout(cameraImageUpdate,30000);
 }
