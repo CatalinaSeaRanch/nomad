@@ -36,11 +36,19 @@ afile.close()
 mfile.close()
 gfile.close()
 
+N = 750 # number of samples
+T = 1.0 / 25.0 # sample spacing
+x = np.linspace(0.0, N*T, N)
+y= genfromtxt('afile.csv', delimiter=',', usecols=2) #1=x, 2=y, 3=z for columns
+yf = scipy.fftpack.fft(y)
+yf = 1/yf #convert to graph of frequency of periods
+xf = np.linspace(0.0, 1.0/(2.0*T), N/2)
+plt.plot(xf[1:], 2.0/N * np.abs(yf[0:N/2])[1:])
+#plt.show()
+plt.savefig('fft.png')##save plot
 
-##fft
 
 
-##save plot
 
 
 ## upload plot
