@@ -341,6 +341,7 @@ function cameraImageUpdate() {
   success: function(data){
   	var thumbnailHTML = '';
   	var count = 0;
+  	var index = 0;
 
   	jQuery.fn.reverse = [].reverse;
 
@@ -353,13 +354,17 @@ function cameraImageUpdate() {
         	return;
         }
 
-        if ( count++ <= 8 ) {
-        	thumbnailHTML += '<div class="col-sm-6 col-md-3 col-lg-3">';
-        	thumbnailHTML += '<div class="thumbnail">';
-        	thumbnailHTML += '<a href="http://nomadcam.catalinasearanch.com/camera1/'+image+'">';
-        	thumbnailHTML += '<img src="http://nomadcam.catalinasearanch.com/camera1/'+image+'" class="img-responsive" />';
-        	thumbnailHTML += '</a></div></div>';
-        }
+        if ( index % 15 == 0 ) {
+	        if ( count++ <= 8 ) {
+	        	thumbnailHTML += '<div class="col-sm-6 col-md-3 col-lg-3">';
+	        	thumbnailHTML += '<div class="thumbnail">';
+	        	thumbnailHTML += '<a href="http://nomadcam.catalinasearanch.com/camera1/'+image+'">';
+	        	thumbnailHTML += '<img src="http://nomadcam.catalinasearanch.com/camera1/'+image+'" class="img-responsive" />';
+	        	thumbnailHTML += '</a></div></div>';
+	        }
+	      }
+
+        index++;
      });
 
     document.getElementById("cameraThumbSpan").innerHTML = thumbnailHTML;
