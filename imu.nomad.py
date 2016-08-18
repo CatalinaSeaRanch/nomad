@@ -86,12 +86,13 @@ while True:
         #plt.show()
         plt.tight_layout()
         plt.savefig('fftg1.png')##save plot
-        print "uploading image to ftp"
+        plt.close('all')
+	print "uploading image to ftp"
         try:
-                plotfig = open(fftg1.png,'rb')
+                plotfig = open("fftg1.png",'rb')
                 ftp = ftplib.FTP(options.hostname)
                 ftp.login(options.username,options.password)
-                ftp.storbinary('STOR imu/latest.png',imageFile,1024)
+                ftp.storbinary('STOR imu/latest.png',plotfig,1024)
                 ftp.quit()      
                 plotfig.close()
                 print "Figure uploaded to server successfully."
@@ -102,6 +103,6 @@ while True:
         time.sleep(840)
 
 
-]#screen -dmS imu.nomad python /home/udooer/nomad/imu.nomad.py --hostname [hostname] --username [username] --password [password] --src [src dir]
+#screen -dmS imu.nomad python /home/udooer/nomad/imu.nomad.py --hostname [hostname] --username [username] --password [password] --src [src dir]
         
 
