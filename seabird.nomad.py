@@ -49,7 +49,8 @@ while True:
 				f.write('conductivity=')
 				f.write(conduct)
 				f.write('&')
-				f.write('depth=2')
+				f.write('depth=')
+				f.write(pressure)
 				f.write('&')
 				f.close()
 				print "File written"
