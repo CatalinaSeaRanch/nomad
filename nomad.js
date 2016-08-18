@@ -375,6 +375,14 @@ function cameraImageUpdate() {
   setTimeout(cameraImageUpdate,30000);
 }
 
+function fftPlotUpdate() {
+	console.log("Updating FFT plot image");
+	document.getElementById("fftPlot").src = "http://nomadcam.catalinasearanch.com/imu/latest.png#" + new Date().getTime();
+
+	// recursive call to repeat this function
+  setTimeout(fftPlotUpdate,5*60*1000);
+}
+
 function enableRangeSelector(enable) {
 	var radioClass;
 	if (enable) {
@@ -420,6 +428,9 @@ timerUpdate();
 
 // Start loading camera images
 cameraImageUpdate();
+
+// Start loading fft plots
+fftPlotUpdate();
 
 // disable range selector
 enableRangeSelector(false);
