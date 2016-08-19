@@ -82,8 +82,6 @@ function drawChart() {
     sinceDate = "";
   }
 
-  console.log("Request: "+'https://data.sparkfun.com/output/' + public_key + '.json' + '?gte[timestamp]='+sinceDate);
-
 	// JSONP request
 	var jsonData = $.ajax({
 		url: data_base_url + data_public_key + '.json' + '?gte[timestamp]='+sinceDate,
