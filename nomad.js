@@ -3,6 +3,11 @@
 // Global Variables
 var lastUpdateDate = new Date();
 
+//var base_url = 'http://data.sparkfun.com/output/';
+var data_base_url = 'http://ec2-52-88-170-89.us-west-2.compute.amazonaws.com:8080/output/';
+//var public_key = '0lgbR1rRQ9UgbE6LoLx1';
+var data_public_key = 'mr8jMdveOGSrqoB4XdWQcVrjaWQ';
+
 var maxAliveTimeoutMS = 300000;
 
 // Update IP address separately from everything else
@@ -54,8 +59,6 @@ function drawChart() {
 	console.log("Drawing charts");
 	shouldUpdate = false;
 
-  var public_key = '0lgbR1rRQ9UgbE6LoLx1';
-
   var dataPage;
   var maxAge;
 
@@ -87,7 +90,7 @@ function drawChart() {
 
 	// JSONP request
 	var jsonData = $.ajax({
-		url: 'https://data.sparkfun.com/output/' + public_key + '.json',
+		url: data_base_url + data_public_key + '.json',
 		data: dataPage,
 		jsonp: 'callback',
 		cache: true,
@@ -232,11 +235,9 @@ function updateChart() {
 	if ( shouldUpdate ) {
 		console.log("Update data");
 
-		var public_key = '0lgbR1rRQ9UgbE6LoLx1';
-
 		// JSONP request
 		var jsonData = $.ajax({
-			url: 'https://data.sparkfun.com/output/' + public_key + '.json',
+			url: data_base_url + data_public_key + '.json',
 			data: {page: 1},
 			jsonp: 'callback',
 			cache: true,
