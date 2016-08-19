@@ -13,7 +13,7 @@ parser.add_option("-k","--key",dest="private_key",help="Phant private key for IP
 parser.add_option("-s","--src",dest="source",help="Source directory for '.nomad' data files.")
 (options,args) = parser.parse_args()
 
-getURL = 'http://data.sparkfun.com/input/0lgbR1rRQ9UgbE6LoLx1'
+getURL = 'http://ec2-52-88-170-89.us-west-2.compute.amazonaws.com:8080/input/mr8jMdveOGSrqoB4XdWQcVrjaWQ'
 
 while True:
 		# Initialize request string
@@ -29,7 +29,7 @@ while True:
 
 		requestData = requestData.rstrip('&')
 
-		print "Sending data to Sparkfun Phant..."
+		print "Sending data to CSR AWS Phant..."
 		try: 
 				requestString = getURL+'?private_key='+options.private_key+'&'+requestData
 				r = requests.get(requestString,timeout=10)

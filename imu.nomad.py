@@ -81,15 +81,17 @@ while True:
         plt.ylabel('Magnitude of Occurrence')
         plt.title('FFT of Gyro Data')
         plt.grid(True)
-        plt.xlim([0, 35])
+        plt.xlim([0, 30])
+	plt.ylim([0, 6])
         #plt.xticks(np.arange(min(x), max(x)+1, 2.0))
         #max_y = max(yf)
         #max_x_pos = xf[y.index(max_y)]
         #plt.annotate('Dominant Period', xy=(max_x,max_y),xytext=(max_x+1,max_y+0.00001),arrowprops=dict(facecolor='black', shrink=0.01))
-        #plt.show()
-        plt.tight_layout()
-        plt.savefig('fftg1.png')##save plot
-        plt.close('all')
+	plt.annotate(time.strftime('%X %Z'),xy=(20,2.4))
+	#plt.show()
+	plt.tight_layout()
+	plt.savefig('fftg1.png')##save plot
+	plt.close('all')
 	print "uploading image to ftp"
         try:
                 plotfig = open("fftg1.png",'rb')
@@ -102,7 +104,7 @@ while True:
         except:
                 print "Unknown FTP exception."
 
-        print "done! sleeping 14 minutes to next sample period"
+        print "done! sleeping 10 minutes to next sample period"
         time.sleep(600)
 
 
