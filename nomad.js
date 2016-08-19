@@ -232,12 +232,7 @@ function updateChart() {
 
 		// JSONP request
 		var jsonData = $.ajax({
-<<<<<<< 5942a008a414f51a12551f5e014c8ce39c09d138
-			url: data_base_url + data_public_key + '.json',
-			data: {page: 1},
-=======
-			url: 'https://data.sparkfun.com/output/' + public_key + '.json?gte[timestamp]=-60seconds',
->>>>>>> Switch to requesting only the data that is needed.
+			url: data_base_url + data_public_key + '.json' + '.json?gte[timestamp]=-60seconds',
 			jsonp: 'callback',
 			cache: true,
 			dataType: 'jsonp',
