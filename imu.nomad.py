@@ -27,7 +27,7 @@ while True:
         gfile = open('gfile.csv', 'w')
         gfile.close()
         print "previous data cleared, starting collection"
-        for x in range(0,2000):
+        for x in range(0,10000):
                 accel = open('/sensors/accelerometer/data','r')
                 mag = open('/sensors/magnetometer/data','r')
                 gyro = open('/sensors/gyroscope/data','r')
@@ -55,22 +55,25 @@ while True:
         mfile.close()
         gfile.close()
         print "data collection finished, plotting to file"
-        N = 2000 # number of samples
+        N = 10000 # number of samples
         T = 1.0 / 33.3333 # sample spacing
         x = np.linspace(0.0, N*T, N)
         y= genfromtxt('gfile.csv', delimiter=',', usecols=1) #1=x, 2=y, 3=z for columns
-        yf = scipy.fftpack.fft(y)
+        #y2= genfromtxt('gfile.csv', delimiter=',', usecols=2) 
+	#y3= genfromtxt('gfile.csv', delimiter=',', usecols=3)
+	#y4= np.vstack((y1,y2))
+	#y = np.vstack((y4,y3))
+	yf = scipy.fftpack.fft(y)
         #yf = 1/yf #convert to graph of frequency of periods
         xf = np.linspace(0.0, 1.0/(2.0*T), N/2)
         xf = 1/xf
-        #plt.tight_layout(pad=1.08)
         plt.figure(1)
         plt.subplot(211)
-        plt.plot(x,y)
+        plt.plot(x[1:],y[1:])
         plt.xlabel('Time (seconds)')
-        plt.ylabel('Raw Sensor Value')
+        plt.ylabel('Raw Sensor Value, single axis')
         plt.title('Raw Motion Data')
-        plt.xlim([0, 60])
+        plt.xlim([0, 300])
         plt.grid(True)
         plt.subplot(212)
         plt.plot(xf[1:], 2.0/N * np.abs(yf[0:N/2])[1:])
@@ -78,7 +81,7 @@ while True:
         plt.ylabel('Magnitude of Occurrence')
         plt.title('FFT of Gyro Data')
         plt.grid(True)
-        plt.xlim([0, 25])
+        plt.xlim([0, 35])
         #plt.xticks(np.arange(min(x), max(x)+1, 2.0))
         #max_y = max(yf)
         #max_x_pos = xf[y.index(max_y)]
@@ -100,7 +103,7 @@ while True:
                 print "Unknown FTP exception."
 
         print "done! sleeping 14 minutes to next sample period"
-        time.sleep(840)
+        time.sleep(600)
 
 
 #screen -dmS imu.nomad python /home/udooer/nomad/imu.nomad.py --hostname [hostname] --username [username] --password [password] --src [src dir]
