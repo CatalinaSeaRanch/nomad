@@ -27,7 +27,7 @@ while True:
         gfile = open('gfile.csv', 'w')
         gfile.close()
         print "previous data cleared, starting collection"
-        for x in range(0,10000):
+        for x in range(0,6000):
                 accel = open('/sensors/accelerometer/data','r')
                 mag = open('/sensors/magnetometer/data','r')
                 gyro = open('/sensors/gyroscope/data','r')
@@ -50,13 +50,13 @@ while True:
                 gfile.write(',')
                 gfile.write(gdata)
                 x=x+1
-                time.sleep(0.03)
+                time.sleep(0.05)
         afile.close()
         mfile.close()
         gfile.close()
         print "data collection finished, plotting to file"
-        N = 10000 # number of samples
-        T = 1.0 / 33.3333 # sample spacing
+        N = 6000 # number of samples
+        T = 1.0 / 20.0 # sample spacing
         x = np.linspace(0.0, N*T, N)
         y= genfromtxt('gfile.csv', delimiter=',', usecols=1) #1=x, 2=y, 3=z for columns
         #y2= genfromtxt('gfile.csv', delimiter=',', usecols=2) 
@@ -79,15 +79,16 @@ while True:
         plt.plot(xf[1:], 2.0/N * np.abs(yf[0:N/2])[1:])
         plt.xlabel('Period (seconds)')
         plt.ylabel('Magnitude of Occurrence')
-        plt.title('FFT of Gyro Data')
+	b=time.strftime('%X %Z')
+        plt.title('FFT of Gyro Data %s'%b)
         plt.grid(True)
         plt.xlim([0, 30])
-	plt.ylim([0, 6])
+	#plt.ylim([0, 6])
         #plt.xticks(np.arange(min(x), max(x)+1, 2.0))
         #max_y = max(yf)
         #max_x_pos = xf[y.index(max_y)]
         #plt.annotate('Dominant Period', xy=(max_x,max_y),xytext=(max_x+1,max_y+0.00001),arrowprops=dict(facecolor='black', shrink=0.01))
-	plt.annotate(time.strftime('%X %Z'),xy=(20,2.4))
+	#plt.annotate(time.strftime('%X %Z'),xy=(20,2.4))
 	#plt.show()
 	plt.tight_layout()
 	plt.savefig('fftg1.png')##save plot
