@@ -54,6 +54,7 @@ while True:
 				f.write('&')
 				f.close()
 				print "File written"
+				print time.strftime('%X %Z %Z')
 			except:
 				print "not a packet with data"
 				time.sleep(8)
