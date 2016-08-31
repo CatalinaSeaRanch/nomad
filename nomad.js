@@ -82,6 +82,8 @@ function drawChart() {
     sinceDate = "";
   }
 
+  console.log("Getting data: "+data_base_url + data_public_key + '.json' + '?gte[timestamp]='+sinceDate);
+
 	// JSONP request
 	var jsonData = $.ajax({
 		url: data_base_url + data_public_key + '.json' + '?gte[timestamp]='+sinceDate,
@@ -329,7 +331,7 @@ function cameraImageUpdate() {
 		document.getElementById("camAlive").style.color = 'red';
 	}
 
-	$.ajax({
+	/*$.ajax({
   url: "http://nomadcam.catalinasearanch.com/camera1/",
   success: function(data){
   	var thumbnailHTML = '';
@@ -362,7 +364,7 @@ function cameraImageUpdate() {
 
     document.getElementById("cameraThumbSpan").innerHTML = thumbnailHTML;
   }
-});
+});*/
 
 	// recursive call to repeat this function
   setTimeout(cameraImageUpdate,30000);
@@ -393,9 +395,7 @@ function enableRangeSelector(enable) {
 }
 
 // load chart lib
-google.load('visualization', '1', {
-  packages: ['corechart']
-});
+google.charts.load('current', {'packages':['corechart']});
 
 // init data tables
 var dataTemp;
@@ -429,7 +429,7 @@ fftPlotUpdate();
 enableRangeSelector(false);
 
 // call drawChart once google charts is loaded
-google.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawChart);
 
 // start update cycle
 setTimeout(updateChart,10000);
