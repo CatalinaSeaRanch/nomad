@@ -326,6 +326,9 @@ function cameraImageUpdate() {
 	document.getElementById("camera1Image").src = "http://nomadcam.catalinasearanch.com/camera1/latest.jpg#" + new Date().getTime();
 	document.getElementById("camera2Image").src = "http://nomadcam.catalinasearanch.com/camera2/latest.jpg#" + new Date().getTime();
 
+	document.getElementById("camera1Link").href = document.getElementById("camera1Image").src;
+	document.getElementById("camera2Link").href = document.getElementById("camera2Image").src;
+
 	if ( true ) {
 		document.getElementById("camAlive").style.color = 'YellowGreen';
 	} else {
