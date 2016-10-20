@@ -5,6 +5,12 @@ import os
 import glob
 import time
 import ftplib
+import datetime
+import pytz
+from astral import *
+from astral import GoogleGeocoder
+a=Astral(GoogleGeocoder)
+location = a['Los Angeles']
 
 parser = OptionParser()
 parser.add_option("-n","--hostname",dest="hostname",help="FTP Hostname")
@@ -17,10 +23,11 @@ lastImg = "none"
 
 while True:
 		print "Searching for newest camera image..."
-		
-		newImage = max(glob.iglob(options.src+'*.[Jj][Pp][Gg]'), key=os.path.getctime)
+		sun=location.sun(date=datetime.datetime.now(),local=True)
 
-		if ( newImage ):
+		newImage = max(glob.iglob(options.src+'*.[Jj][Pp][Gg]'), key=os.path.getctime)
+		timenow = datetime.datetime.now(pytz.timezone('US/Pacific'))
+		if ( newImage ) and sun['dawn'] < timenow and sun['dusk'] > timenow :
 				if ( newImage != lastImg ):
 						print "New image found at "+newImage
 
@@ -46,7 +53,7 @@ while True:
 				else:
 						print "No new images found."
 				
-		time.sleep(60)
+		time.sleep(300)
 
 # To run this script on the onboard computer, add the following line
 # to rc.local:
