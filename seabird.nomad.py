@@ -1,6 +1,8 @@
 
 import serial
 import time
+from ISStreamer.Streamer import Streamer
+streamer = Streamer(bucket_name="NomadBuoy", bucket_key="DQQTCP4FWSYK", access_key="LIrzTUCldL8wVbMSokjT27MNVSBui1Li")
 
 #Seabird MicroCAT - 96008n1 - Conducitivity / DO / Pressure / TEMP / PSU
 ser = serial.Serial(
@@ -54,6 +56,13 @@ while True:
 				f.write('&')
 				f.close()
 				print "File written"
+				streamer.log("DO",DO)
+				streamer.log("Salinity",PSU)
+				streamer.log("watertemp",temp)
+				streamer.log("conductivity",conduct)
+				streamer.log("depth_m",pressure)
+				streamer.close()
+				print "Data pushed to InitialState"
 			except:
 				print "not a packet with data"
 				time.sleep(8)
