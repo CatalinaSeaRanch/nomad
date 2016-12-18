@@ -1,5 +1,8 @@
 import serial
 import time
+from ISStreamer.Streamer import Streamer
+streamer = Streamer(bucket_name="NomadBuoy", bucket_key="DQQTCP4FWSYK", access_key="LIrzTUCldL8wVbMSokjT27MNVSBui1Li")
+
 import os
 from math import log10, floor
 def round_to_1(x):
@@ -30,7 +33,10 @@ while True:
 		f.write('&')
 		f.close()
 		print "data written"
-		time.sleep(10)
+		streamer.log("internal_temp",InternalTemp)
+		streamer.log("Battery_Voltage",Batv)
+		streamer.close()
+		time.sleep(60)
 		#except:
 		#	print "Error!"
 		#	time.sleep(5)		
