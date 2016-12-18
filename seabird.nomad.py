@@ -63,6 +63,7 @@ while True:
 				streamer.log("depth_m",pressure)
 				streamer.close()
 				print "Data pushed to InitialState"
+				print time.strftime('%X %Z %Z')
 			except:
 				print "not a packet with data"
 				time.sleep(8)

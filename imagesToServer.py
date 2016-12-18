@@ -26,8 +26,8 @@ while True:
 		sun=location.sun(date=datetime.datetime.now(),local=True)
 
 		newImage = max(glob.iglob(options.src+'*.[Jj][Pp][Gg]'), key=os.path.getctime)
-		timenow = datetime.datetime.now(pytz.timezone('US/Pacific'))	
-		if ( newImage ) and sun['dawn'] < timenow and sun['dusk'] > timenow:
+		timenow = datetime.datetime.now(pytz.timezone('US/Pacific'))
+		if ( newImage ) and sun['dawn'] < timenow and sun['dusk'] > timenow :
 				if ( newImage != lastImg ):
 						print "New image found at "+newImage
 

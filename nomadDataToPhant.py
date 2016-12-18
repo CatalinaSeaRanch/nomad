@@ -37,6 +37,7 @@ while True:
 				print requestString
 				print "Result: "
 				print r.text
+				print time.strftime('%X %Z %Z')
 		except:
 				print "Unexpected error:", sys.exc_info()[0]
 
