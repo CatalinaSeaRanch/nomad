@@ -40,6 +40,7 @@
 				</ul>-->
 			</div><!--/.nav-collapse -->
 			<div class="pull-right" style="margin-top:-40px">
+				<br />
 				<span id="spinner"></span>
 				<span id="timeSinceUpdate"></span>
 			</div>
@@ -85,200 +86,14 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">Buoy Status</div>
-						<div class="panel-body">
-							<table class="table">
-								<thead>
-									<tr>
-										<th>Field</th>
-										<th>Value</th>
-										<th>Units</th>
-									</tr>
-								</thead>
-								<tr>
-									<td>
-										Battery Voltage
-									</td>
-									<td>
-										<span id="voltageLabel"></span>
-									</td>
-									<td>
-										V
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Current Draw
-									</td>
-									<td>
-										<span id="currentLabel"></span>
-									</td>
-									<td>
-										A
-									</td>
-								</tr>
-								<tr>
-									<td>
-										CPU Temperature
-									</td>
-									<td>
-										<span id="intTempLabel"></span>
-									</td>
-									<td>
-										&deg;C
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">Measurements</div>
-						<div class="panel-body">
-							<table class="table">
-								<thead>
-									<tr>
-										<th>Field</th>
-										<th>Value</th>
-										<th>Units</th>
-									</tr>
-								</thead>
-								<tr>
-									<td>
-										Water Temperature
-									</td>
-									<td>
-										<span id="waterTempLabel"></span>
-									</td>
-									<td>
-										&deg;C
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Salinity
-									</td>
-									<td>
-										<span id="salinityLabel"></span>
-									</td>
-									<td>
-										PSU
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Conductivity
-									</td>
-									<td>
-										<span id="conductivityLabel"></span>
-									</td>
-									<td>
-										S/m
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Dissolved Oxygen
-									</td>
-									<td>
-										<span id="oxygenLabel"></span>
-									</td>
-									<td>
-										mg/L
-									</td>
-								</tr>
-								<tr>
-									<td>
-										pH
-									</td>
-									<td>
-										<span id="pHLabel"></span>
-									</td>
-									<td>
-										-
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Sensor Depth
-									</td>
-									<td>
-										<span id="depthLabel"></span>
-									</td>
-									<td>
-										m
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="btn-group btn-group-xs pull-right" data-toggle="buttons">
-
-				<label id="fiveMinLabel" class="btn btn-primary">
-					<input type="radio" name="pageSelector" id="fiveMin" onchange="drawChart();">5 Min
-				</label>
-				<label id="fifteenMinLabel" class="btn btn-primary">
-					<input type="radio" name="pageSelector" id="fifteenMin" onchange="drawChart();">15 Min
-				</label>				
-				<label id="oneHrLabel" class="btn btn-primary active">
-					<input type="radio" name="pageSelector" id="oneHr" onchange="drawChart();" checked>1 Hr
-				</label>
-				<label id="oneDayLabel" class="btn btn-primary">
-					<input type="radio" name="pageSelector" id="oneDay" onchange="drawChart();">1 Day
-				</label>				
-				<label id="oneWeekLabel" class="btn btn-primary">
-					<input type="radio" name="pageSelector" id="oneWeek" onchange="drawChart();">1 Week
-				</label>				
-				<label id="oneMonthLabel" class="btn btn-primary">
-					<input type="radio" name="pageSelector" id="oneMonth" onchange="drawChart();">1 Month
-				</label>												
-				<label id="allPagesLabel" class="btn btn-primary">
-					<input type="radio" name="pageSelector" id="allPages" onchange="drawChart();">All Data
-				</label>
-			</div>
-
-			<br /><br />			
-
 			<div class="panel panel-default">
-				<div class="panel-heading">Water Temperature</div>
-				<div class="panel-body">
-					<div id="chartTemp" style="width: 100%;"></div>				
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">Salinity</div>
-				<div class="panel-body">
-					<div id="chartSalinity" style="width: 100%;"></div>				
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">Conductivity</div>
-				<div class="panel-body">
-					<div id="chartConductivity" style="width: 100%;"></div>				
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">Dissolved Oxygen</div>
-				<div class="panel-body">
-					<div id="chartOxygen" style="width: 100%;"></div>				
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">Sensor Depth</div>
-				<div class="panel-body">
-					<div id="chartDepth" style="width: 100%;"></div>
-				</div>
-			</div>
+				<div class="panel-heading">Live Data</div>
+				<div class="is-embed">
 
+				<iframe src="https://app.initialstate.com/embed/#/tiles/9UmUq2Z8XU6mB4kGK2RE99G0NrVPq6OH"></iframe>
+				</div>
+
+			</div>	
 			<div class="panel panel-default">
 				<div class="panel-heading">White Shark Tracker Tags</div>
 				<div class="panel-body">
@@ -321,11 +136,11 @@
 					</p>
 				</div>
 				<div class="col-md-6">
-					<p class="text-right text-muted">
+					<!--<p class="text-right text-muted">
 						<span id="lastUpdatedLabel">Data has not been received </span>
 						<span id="ipAddressDateLabel"></span> / <span id="ipAddressLabel"></span>
 						<span id="alive"><i class="fa fa-circle" aria-hidden="true"></i></span>
-					</p>
+					</p>-->
 				</div>
 			</div>
 		</div>

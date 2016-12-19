@@ -290,7 +290,7 @@ function updateChart() {
 }
 
 function timerUpdate() {
-  var elapsed = Math.floor(Math.abs(new Date() - lastUpdateDate)/1000);
+  /*var elapsed = Math.floor(Math.abs(new Date() - lastUpdateDate)/1000);
   if ( elapsed < 60 ) {
     document.getElementById("timeSinceUpdate").innerHTML = '<span class="label label-success"><i class="fa fa-clock-o fa-lg"></i> '+elapsed+' seconds ago</span>';
   } else if ( elapsed < 3600 ) {
@@ -302,7 +302,7 @@ function timerUpdate() {
   }
 
   // recursive call to repeat this function
-  setTimeout(timerUpdate,1000);
+  setTimeout(timerUpdate,1000);*/
 }
 
 var spinnerCount = 0;
