@@ -10,6 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.fftpack
 from numpy import genfromtxt
+from scipy import signal
 import ftplib
 
 parser = OptionParser()
@@ -75,14 +76,14 @@ while True:
         plt.title('Raw Motion Data')
         plt.xlim([0, 300])
         plt.grid(True)
-        plt.subplot(212)
-        plt.plot(xf[1:], 2.0/N * np.abs(yf[0:N/2])[1:])
-        plt.xlabel('Period (seconds)')
-        plt.ylabel('Magnitude of Occurrence')
-	b=time.strftime('%X %Z')
-        plt.title('FFT of Gyro Data %s'%b)
-        plt.grid(True)
-        plt.xlim([0, 30])
+        #plt.subplot(212)
+        #plt.plot(xf[1:], 2.0/N * np.abs(yf[0:N/2])[1:])
+        #plt.xlabel('Period (seconds)')
+        #plt.ylabel('Magnitude of Occurrence')
+	#b=time.strftime('%X %Z')
+        #plt.title('FFT of Gyro Data %s'%b)
+        #plt.grid(True)
+        #plt.xlim([0, 30])
 	#plt.ylim([0, 6])
         #plt.xticks(np.arange(min(x), max(x)+1, 2.0))
         #max_y = max(yf)
@@ -90,9 +91,19 @@ while True:
         #plt.annotate('Dominant Period', xy=(max_x,max_y),xytext=(max_x+1,max_y+0.00001),arrowprops=dict(facecolor='black', shrink=0.01))
 	#plt.annotate(time.strftime('%X %Z'),xy=(20,2.4))
 	#plt.show()
+	plt.subplot(212)
+	f, Pxx_den = signal.welch(y, 20, nperseg=256)
+	plt.semilogy(f, Pxx_den)
+	plt.title('Dominant wave frequency Welchs method %s'%b)
+	#plt.ylim([0.5e-3, 1])
+	
 	plt.tight_layout()
 	plt.savefig('fftg1.png')##save plot
 	plt.close('all')
+	
+	
+	
+	
 	print "uploading image to ftp"
         try:
                 plotfig = open("fftg1.png",'rb')
