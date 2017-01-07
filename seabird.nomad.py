@@ -33,27 +33,20 @@ while True:
                 #year = input.split(" ")[15]
                 #time = input.split(" ")[16]
                 #time = time.replace(',', '')
-        			print "Data collected, saving to file..."
-				f = open('/home/udooer/nomad/data/seabird.nomad','w')
-				f.close()  #opens/closes file and deletes contents
+        			print "Data collected, saving to local backup file..."
 				f = open('/home/udooer/nomad/data/seabird.nomad','w') #opens file and inserts data
-				f.write('dissolvedo2=')
-                                f.write(DO)
-				f.write('&')
-				f.write('ph=0.0')
-                                f.write('&')
-				f.write('salinity=')
+                                f.write(time.strftime('%X %Z %Z'))
+				f.write(',')
+				f.write(DO)
+				f.write(',')
 				f.write(PSU)
-				f.write('&')
-				f.write('watertemp=')
+				f.write(',')
 				f.write(temp)
-				f.write('&')
-				f.write('conductivity=')
+				f.write(',')
 				f.write(conduct)
-				f.write('&')
-				f.write('depth=')
+				f.write(',')
 				f.write(pressure)
-				f.write('&')
+				f.write('\n')
 				f.close()
 				print "File written"
 				streamer.log("DO",DO)
