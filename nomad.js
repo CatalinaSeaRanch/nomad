@@ -27,7 +27,7 @@ var lastUpdateDate = new Date();
 
   // recursive call to repeat this function
   setTimeout(timerUpdate,1000);*/
-}
+//}
 
 var spinnerCount = 0;
 function spinner(on) {
