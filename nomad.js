@@ -138,7 +138,7 @@ function fftPlotUpdate() {
 //var chartOxygen;
 //var chartDepth;
 
-var shouldUpdate = false;
+var shouldUpdate = true;
 //var pointSize = 0;
 
 // grab IP on start
