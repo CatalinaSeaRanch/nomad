@@ -64,6 +64,6 @@ while True:
 				
 # sudo chmod 777 /dev/ttyUSB0
 
-#screen -dmS seabird.nomad python /home/udooer/nomad/seabird.nomad.py
+#screen -dmS seabird.nomad python /home/udooer/nomad/nomad/seabird.nomad.py
 
 

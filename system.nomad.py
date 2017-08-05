@@ -36,7 +36,7 @@ while True:
 		streamer.log("internal_temp",InternalTemp)
 		streamer.log("Battery_Voltage",Batv)
 		streamer.close()
-		time.sleep(60)
+		time.sleep(120)
 		#except:
 		#	print "Error!"
 		#	time.sleep(5)		

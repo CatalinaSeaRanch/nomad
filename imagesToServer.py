@@ -53,8 +53,8 @@ while True:
 				else:
 						print "No new images found."
 				
-		time.sleep(300)
+		time.sleep(900)
 
 # To run this script on the onboard computer, add the following line
 # to rc.local:
-# screen -dmS camera python /home/[username]/nomad/imagesToServer.py --hostname [hostname] --username [username] --password [password] --src [src dir]
+# screen -dmS camera python /home/[username]/nomad/nomad/imagesToServer.py --hostname [hostname] --username [username] --password [password] --src [src dir]
