@@ -20,18 +20,6 @@ while True:
 		InternalTemp = float(output)/1000
 		print "internal temp:"
 		print InternalTemp
-		f = open('/home/udooer/nomad/data/system.nomad','w')
-		f.close()  #opens/closes file and deletes contents
-		f = open('/home/udooer/nomad/data/system.nomad','w') #opens file and inserts data
-		f.write('current=0.0')
-		f.write('&')
-		f.write('internaltemp=')
-		f.write(str(InternalTemp))
-		f.write('&')
-		f.write('voltage=')   
-                f.write(str(Batv))
-		f.write('&')
-		f.close()
 		print "data written"
 		streamer.log("internal_temp",InternalTemp)
 		streamer.log("Battery_Voltage",Batv)
