@@ -20,7 +20,7 @@ parser.add_option("-s","--src",dest="src",help="Source directory for image files
 (options,args) = parser.parse_args()
 
 lastImg = "none"
-os.chdir(options.src)
+
 while True:
 		print "Searching for newest camera image..."
 		sun=location.sun(date=datetime.datetime.now(),local=True)
@@ -38,7 +38,7 @@ while True:
 								imageFileAgain = open(newImage,'rb')
 								ftp = ftplib.FTP(options.hostname)
 								ftp.login(options.username,options.password)
-								ftp.storbinary('STOR camera1/latest.jpg',imageFile,1024)
+								ftp.storbinary('STOR camera2/latest.jpg',imageFile,1024)
 								ftp.quit()	
 								imageFile.close()
 								print "Image uploaded to server successfully."
