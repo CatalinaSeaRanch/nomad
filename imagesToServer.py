@@ -20,7 +20,7 @@ parser.add_option("-s","--src",dest="src",help="Source directory for image files
 (options,args) = parser.parse_args()
 
 lastImg = "none"
-
+os.chdir(options.src)
 while True:
 		print "Searching for newest camera image..."
 		sun=location.sun(date=datetime.datetime.now(),local=True)
