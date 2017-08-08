@@ -25,7 +25,7 @@ while True:
 		print "Searching for newest camera image..."
 		sun=location.sun(date=datetime.datetime.now(),local=True)
 
-		newImage = max(glob.glob(options.src+'*.[Jj][Pp][Gg]'), key=os.path.getctime)
+		newImage = max(glob.iglob(options.src+'*.[Jj][Pp][Gg]'), key=os.path.getctime)
 		timenow = datetime.datetime.now(pytz.timezone('US/Pacific'))
 		if ( newImage ) and sun['dawn'] < timenow and sun['dusk'] > timenow :
 				if ( newImage != lastImg ):
@@ -39,7 +39,6 @@ while True:
 								ftp = ftplib.FTP(options.hostname)
 								ftp.login(options.username,options.password)
 								ftp.storbinary('STOR camera1/latest.jpg',imageFile,1024)
-								ftp.storbinary('STOR camera1/nomad-'+time.strftime("%Y%m%d-%H%M%S")+'.jpg',imageFileAgain,1024)
 								ftp.quit()	
 								imageFile.close()
 								print "Image uploaded to server successfully."
