@@ -16,21 +16,18 @@ ser = serial.Serial(
     timeout=3)
 line=0
 while True:
-	while line < 40:
-		input = ser.readline()
+	for i in range(20)
 		try:
-			msg=pynmea2.parse(input)
-			line = line+1
+			msg=pynmea2.parse(ser.readline().decode('ascii',errors='replace'))
+			print msg.latitude
+			print msg.longitude
 			print "sentence received and parsed"
 		except:
-			print "not a sentence"
+			print "not right sentence"
 	try:
 		#streamer.log("Lat",msg.latitude)
 		#streamer.log("Lon",msg.longitude)
 		print "data pushed"
-		print msg.latitude
-		print msg.longitude
-		line = 0
 	except:
 		print "data push fail"
 	time.sleep(5)
