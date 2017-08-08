@@ -29,26 +29,40 @@ ser = serial.Serial(
     timeout=3)
 while True:
 	time.sleep(1)
+	ser.flushInput()
 	ser.write('?!')
+	ser.readline()
+	ser.write('0M2!')
+	ser.readline()
+	ser.readline()
+	ser.write('0D0!')
+	windData = ser.readline()
 	time.sleep(0.5)
 	ser.write('0M1!')
-	time.sleep(0.5)
-	ser.write('0D0!'
-	input1 = ser.readline()
-	time.sleep(0.5)
-	ser.write('0M2!')
-	time.sleep(0.5)
+	ser.readline()
+	ser.readline()
 	ser.write('0D0!')
-	input2 = ser.readline()
-	print(input1)
-	print(input2)
-		
-
-		#streamer.log("Relative Wind Direction",RWD)
-		#streamer.log("Relative Wind Speed",RWS)
-		#streamer.log("BaroPressure",bpressure)
-		#streamer.log("Relative Humidity",RH)
-		#streamer.log("Air Temp",Atemp)
-		#streamer.log("Dewpoint",dpoint)
-
-		time.sleep(10)
+	airData = ser.readline()
+	RWD = windData.split("+")[1]
+	RWS = windData.split("+")[2]
+	Atemp = airData.split("+")[1]
+	Humidity = airData.split("+")[2]
+	dpoint = airData.split("+")[3]
+	bpressure = airData.split("+")[4]
+	print("data")
+	print(RWD)
+	print(RWS)
+	print(Atemp)
+	print(Humidity)
+	print(dpoint)
+	print(bpressure)
+	print(" collected")
+	streamer.log("RWD, d",RWD)
+	streamer.log("RWS, m/s",RWS)
+	streamer.log("BP, hPa",bpressure)
+	streamer.log("RH, %", Humidity)
+	streamer.log("Air Temp, C",Atemp)
+	streamer.log("DP, C",dpoint)
+	time.sleep(60)
+#screen -dmS weather.nomad python /home/udooer/nomad/nomad/atmospheric.nomad.py
+#to do - take 1 minute average of samples @ 10 seconds? 5 seconds?
