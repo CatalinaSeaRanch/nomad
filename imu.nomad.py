@@ -94,8 +94,9 @@ while True:
 	plt.subplot(212)
 	f, Pxx_den = signal.welch(y, 20, nperseg=256)
 	plt.semilogy(f, Pxx_den)
+
 	plt.title('Dominant wave frequency Welchs method %s%b)
-	#plt.ylim([0.5e-3, 1])
+        	#plt.ylim([0.5e-3, 1])
 	
 	plt.tight_layout()
 	plt.savefig('fftg1.png')##save plot
