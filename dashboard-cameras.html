@@ -5,6 +5,7 @@
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.3.2/luminous-basic.min.css" rel="stylesheet">
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
@@ -13,11 +14,11 @@
 	<link href="style.css" rel="stylesheet" type="text/css">
 
 	<!-- EXTERNAL LIBS-->
-	<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.3.2/luminous.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
 
 </head>
-<body class="body-stats">
+<body class="body-dark">
 	<nav class="navbar navbar-default navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,15 +39,20 @@
         <li><a href="dashboard-nomad.html">NOMAD System Stats</a></li>
         <li class="active"><a href="dashboard-cameras.html">Cameras</a></li>
       </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 	</nav>
 
-	<div class="iframe-container">
-		Cameras?
+	<div class="container container-cameras" style="padding-top:20px">
+		<div class="row">
+			<div class="col-md-4"><a class="camera-img" href="http://localhost:8080/cameras/1"><img src="http://localhost:8080/cameras/1"></a></div>
+			<div class="col-md-4"><a class="camera-img" href="http://localhost:8080/cameras/2"><img src="http://localhost:8080/cameras/2"></a></div>
+			<div class="col-md-4"><a class="camera-img" href="http://localhost:8080/cameras/3"><img src="http://localhost:8080/cameras/3"></a></div>
+		</div>
 	</div>
+
+	<script>
+		new LuminousGallery(document.querySelectorAll(".camera-img"));
+	</script>
+
 </body></html>

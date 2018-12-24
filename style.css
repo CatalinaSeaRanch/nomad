@@ -55,16 +55,20 @@ body {
 }
 
 
+.body-dark {
+    background: #202028;
+}
+
 .body-stats {
   /* background-color: #000; */
-  background: #202028;
   /* background: -webkit-linear-gradient(top,#202028,#0f0e15); */
   /* background: linear-gradient(180deg,#202028 0,#0f0e15); */
   height: 100%;
   overflow: hidden;
 }
 
-.body-stats .navbar {
+
+.body-dark .navbar {
   margin-bottom: 0;
   position: relative;
   z-index: 10;
@@ -101,5 +105,15 @@ h1 {
 	border: none;
   /* z-index: -1; */
   /* box-shadow: inset 0 0 10px #000; */
+}
 
+.container-cameras img {
+  margin: 20px 0 20px;
+  width: 100%;
+  box-shadow: 0 0 20px #00000044;
+  z-index: 0;
+}
+
+.lum-lightbox {
+  z-index:20;
 }
