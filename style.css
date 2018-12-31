@@ -52,18 +52,26 @@ body {
 
 }
 
+.body-home .navbar-default .navbar-nav>li>a,
 .btn-primary {
+  color: #fff;
   background: #6B92E7;
   border:0;
   box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
   border-radius: 4px;
       transition: all .15s ease-in-out;
 }
-.btn-primary:hover {
+
+.body-home .navbar-default .navbar-nav>li>a:hover,
+.btn-primary:hover, .btn-primary:focus {
   /* background: #00b4bf; */
   background: #0abeca;
+  color: #fff;
   transform: translateY(-1px);
   box-shadow: 3px 6px 12px rgba(50,50,93,.21), 0 3px 6px rgba(0,0,0,.08);
+}
+.btn-primary:active, .btn-primary:active:hover {
+  background:#1dcad6;
 }
 h1 {
   font-size: 2em;
