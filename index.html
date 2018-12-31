@@ -6,16 +6,14 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
 	<!-- Main style sheet -->
 	<link href="style.css" rel="stylesheet" type="text/css">
 
 	<!-- EXTERNAL LIBS-->
+	<script defer src="https://use.fontawesome.com/releases/v5.6.3/js/solid.js" integrity="sha384-F4BRNf3onawQt7LDHDJm/hwm3wBtbLIfGk1VSB/3nn3E+7Rox1YpYcKJMsmHBJIl" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.6.3/js/fontawesome.js" integrity="sha384-treYPdjUrP4rW5q82SnECO7TPVAz4bpas16yuE9F5o7CeBn2YYw1yr5oC8s8Mf8t" crossorigin="anonymous"></script>
+
 	<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.js" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha384-vhJnz1OVIdLktyixHY4Uk3OHEwdQqPppqYR8+5mjsauETgLOcEynD9oPHhhz18Nw" crossorigin="anonymous"></script>
 
 </head>
 <body class="body-home">
@@ -33,95 +31,106 @@
 					<span><img src="assets/images/csr-logo.jpg" class="navbar-logo" /><span>
 					</a>
 					<a class="navbar-brand" href="#">
-						<span class="navbar-title">NOMAD Buoy at Catalina Sea Ranch</span>
+						<span class="navbar-title">NOMAD Buoy at <strong>CSR</strong></span>
 					</a>
 				</div>
 				<div class="collapse navbar-collapse">
-				<!--<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Nomad</a></li>
-					<li><a href="http://www.catalinasearanch.com">CSR</a></li>
-				</ul>-->
+					<ul class="nav navbar-nav navbar-right">
+						<li><button class="btn btn-primary btn-lg" href="dashboard-weather.html">View NOMAD data&nbsp;&nbsp;<i class="fas fa-angle-right"></i></button></li>
+		      </ul>
 			</div><!--/.nav-collapse -->
-			<div class="pull-right" style="margin-top:-40px">
-				<br />
-				<span id="spinner"></span>
-				<span id="timeSinceUpdate"></span>
-			</div>
+
 		</div>
 	</div>
 
 	<div class="container" style="padding-top:100px">
 		<div class="row">
-			<div class="col-md-6">
-				<h1><a href="https://www.ecomagazine.com/news/science/real-time-ocean-observations-and-the-ocean-internet-of-things">Ocean Internet of Things™</a></h1>
-				<p>This website shows live oceanographic data gathered by the Catalina Sea Ranch <em>NOMAD Buoy</em>, anchored ten miles south of San Pedro, CA on the Catalina Sea Ranch aquaculture location. The data is gathered by a variety of sensors and uploaded to a cloud server every few minutes.</p>
-				<p>The current suite of sensors include a SeaBird MicroCat provided by Kristen Davis of UCI, and a VEMCO VR2C acoustic tag receiver provided by the  <a href="http://oceantrackingnetwork.org/">Ocean Tracking Network</a>. </p>
-					<br/><br/><br/><br/><br/><br/>
-					<a class="btn btn-primary btn-lg" href="dashboard-weather.html"><span class="glyphicon glyphicon-stats"> </span>&nbsp;&nbsp;View Sensor Dashboard</a>
+			<div class="col-md-12">
+				<img src="assets/images/csr-ranch.jpg" width="100%">
 			</div>
-			<div class="col-md-6">
-				<a href="assets/images/nomad-1.png"><img src="assets/images/nomad-1.png" class="img-responsive" style="max-width:400px;margin-left:auto;margin-right:auto" /></a>
-				<br />
-			</div>
-
-			<div class="row">
-			</div>
-
-
-			<div class="panel panel-default">
-				<div class="panel-heading">AIS Vessel Information</div>
-				<div class="panel-body">
-					<script type="text/javascript">
-						width='100%';	// the width of the embedded map in pixels or percentage
-						height='450';	// the height of the embedded map in pixels or percentage
-						border='1';	// the width of the border around the map (zero means no border)
-						shownames='true';	// to display ship names on the map (true or false)
-						latitude='33.60827';	// the latitude of the center of the map, in decimal degrees
-						longitude='-118.108';	// the longitude of the center of the map, in decimal degrees
-						zoom='10';	// the zoom level of the map (values between 2 and 17)
-						maptype='1';	// use 0 for Normal Map, 1 for Satellite, 2 for OpenStreetMap
-						trackvessel='0';	// MMSI of a vessel (note: vessel will be displayed only if within range of the system) - overrides "zoom" option
-						fleet='';	// the registered email address of a user-defined fleet (user's default fleet is used)
-					</script>
-					<script type="text/javascript" src="http://www.marinetraffic.com/js/embed.js"></script>
-				</div>
-			</div>
-
 		</div>
+	</div>
+
+	<br><br><br><br><br><br>
+
+	<div class="container">
+		<div class="row">
+				<div style="text-align: center">
+					<span class="fa-layers fa-fw" style="font-size: 75px">
+						<i class="fas fa-water" style="color:#6B92E7"></i>
+						<i class="fas fa-circle" data-fa-transform="shrink-5" style="color:#00b4bfee"></i>
+						<i class="fas fa-wifi" data-fa-transform="shrink-10" style="color:#fff"></i>
+					</span>
+				</div>
+		</div>
+
+		<div class="row" style="text-align:center">
+			<div style="width:75%;margin:auto;">
+				<h1><a >Ocean Internet of Things™</a></h1>
+				<p style="text-align:left">
+					Imagine taking the pulse of a remote area of the ocean in real time to understand trends, anticipate problems, and devise mitigation measures for immediate corrective actions. Imagine if ocean technology pioneers had a platform to rapidly prove new marine technologies in the field. Six miles off the coast of Southern California, Catalina Sea Ranch is doing exactly that.
+					<br><br>
+					<a class="btn btn-primary" href="https://www.ecomagazine.com/news/science/real-time-ocean-observations-and-the-ocean-internet-of-things">Read More</a>
+				</p>
+
+			</div>
+		</div>
+	</div>
+
+	<br/><br/><br/><br/><br/>
+
+	<div class="highlighted-cta">
+		<div class="cta">
+			<div class="text">
+				<h1>Want to explore the data?</h1>
+				<h2>Take a peek at the conditions <em>right now.</em></h2>
+			</div>
+			<div class="action">
+					<a class="btn btn-primary btn-xl" href="dashboard-weather.html">
+						<span class="btn-img">
+							<i class="fas fa-chart-line"></i>
+						</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;View NOMAD Data&nbsp;&nbsp;<i class="fas fa-angle-right"></i>
+					</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="highlighted-cta">
+		<div class="container">
 		<div class="footer">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-12" style="text-align: center">
 					<p class="text-muted">&copy; <a href="https://www.catalinasearanch.com">Catalina Sea Ranch</a></p>
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script
-    src="https://code.jquery.com/jquery-2.2.4.min.js"
-    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-    crossorigin="anonymous"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.js" crossorigin="anonymous"></script>
 
-    <script src="https://use.fontawesome.com/e1b240a768.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha384-vhJnz1OVIdLktyixHY4Uk3OHEwdQqPppqYR8+5mjsauETgLOcEynD9oPHhhz18Nw" crossorigin="anonymous"></script>
+		<!-- <script src="https://use.fontawesome.com/e1b240a768.js"></script> -->
 
 
 
 
-    <!-- Google Analytics code -->
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-80556886-1', 'auto');
-    ga('send', 'pageview');
+		<!-- Google Analytics code -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    </script>
-  </body>
-  </html>
+		ga('create', 'UA-80556886-1', 'auto');
+		ga('send', 'pageview');
+
+		</script>
+	</body>
+	</html>
