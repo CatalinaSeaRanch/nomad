@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-family: "Open Sans";
+  font-family: "Open Sans", sans-serif;
 }
 
 .body-home .navbar {
@@ -23,7 +23,7 @@ body {
   color: #32335B;
   display:inline;
   line-height: 50px;
-  font-weight: 100;
+  font-weight: 300;
 }
 .navbar-title strong {
   font-weight: 800;
@@ -33,7 +33,6 @@ body {
 }
 
 .navbar-brand {
-  font-family: "Open Sans";
   font-weight: 800;
 }
 .body-home .navbar-brand {
@@ -76,7 +75,7 @@ body {
 h1 {
   font-size: 2em;
   color: #00b4bf;
-  font-weight: 100;
+  font-weight: 300;
 }
 h2 {
   font-size: 1.4em;
